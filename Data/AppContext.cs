@@ -17,24 +17,6 @@ public partial class AppDbContext : IdentityDbContext<AppUser> {
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Game>()
-            .HasMany(g => g.Players)
-            .WithOne(p => p.Game)
-            .HasForeignKey(p => p.GameId);
-        modelBuilder.Entity<AppUser>()
-            .HasMany(u => u.Players)
-            .WithOne(p => p.User)
-            .HasForeignKey(p => p.UserId);
-
-        modelBuilder.Entity<Player>()
-            .HasIndex(p => p.IsOwner)
-            .IsUnique()
-            .HasFilter("[IsOwner] = 1");
-
-        modelBuilder.Entity<Player>()
-            .HasIndex(p => p.IsWinner)
-            .HasFilter("[IsWinner] = 1")
-            .HasFilter("[IsWinner] = 0")
-            .IsUnique();
+        modelBuilder.Entity<Game>().HasMany(g => g.Players).WithOne(p => p.Game).OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -9,8 +9,8 @@ public class Game {
     [Key] public string Id { get; set; }
 
     [Required]
-    public ICollection<Player> Players { get; set; }
-    
+    public IEnumerable<Player> Players { get; set; }
+
     public string StartPage { get; set; }
     public string EndPage { get; set; }
     public GameState State { get; set; }

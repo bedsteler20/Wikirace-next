@@ -1,0 +1,7 @@
+@model Game
+@{
+    ViewBag.Title = "Lobby";
+}
+<div>Join Code: @Model.JoinCode</div>
+<div>Players:</div>
+<partial name="_PlayerList" model="@Model.Players" />

@@ -21,8 +21,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDatabaseRepository();
 
 // Email
-builder.Services.AddTransient<IEmailSender, EmailSenderService>();
-builder.Services.Configure<EmailSenderOptions>(builder.Configuration);
+// builder.Services.AddTransient<IEmailSender, EmailSenderService>();
+// builder.Services.Configure<EmailSenderOptions>(builder.Configuration);
 
 // Accounts
 var identity = builder.Services.AddDefaultIdentity<AppUser>(options => {
@@ -35,6 +35,8 @@ builder.Services.AddSingleton<IAuthorizationHandler, IsInGameRequirementHandler>
 builder.Services.AddAuthorization(options => {
     options.AddPolicy("IsInGame", policy =>
         policy.Requirements.Add(new IsInGameRequirement()));
+    options.AddPolicy("IsGameOwner", policy =>
+        policy.Requirements.Add(new IsGameOwnerRequirement()));
 });
 
 // Routing

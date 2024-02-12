@@ -3,7 +3,7 @@ using Wikirace.Data;
 using Wikirace.Security;
 using Wikirace.Utils;
 
-namespace Wikirace;
+namespace Wikirace.Data;
 
 public class IsGameOwnerRequirement : IAuthorizationRequirement { }
 

@@ -24,7 +24,7 @@ public class IsInGameRequirementHandler : AuthorizationHandler<IsInGameRequireme
         var userId = httpContext?.User.GetUserId();
 
         var game = database?.Games.FirstOrDefault(g => g.Id == gameId);
-        var player = game?.Players.FirstOrDefault(p => p.UserId == userId);
+        var player = database?.Players.FirstOrDefault(p => p.GameId == gameId && p.UserId == userId);
 
         if (game is null || player is null) {
             context.Fail();

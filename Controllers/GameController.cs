@@ -1,5 +1,6 @@
 
 
+using Htmx;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -17,7 +18,7 @@ public class GameController : Controller {
     private readonly IRepository _repository;
 
     // Helper properties to access the game and player from the HttpContext.
-    // These are set in the IsInGameRequirementHandler. So thay will only be 
+    // These are set in the IsInGameRequirementHandler. So they will only be 
     // available if the action has the Authorization(Policy = "IsInGame") attribute.
     private Game? Game => HttpContext.Items["Game"] as Game;
     private Player? Player => HttpContext.Items["Player"] as Player;
@@ -34,7 +35,14 @@ public class GameController : Controller {
     }
 
     [HttpGet]
-    public async Task<IActionResult> Lobby() {
+    public IActionResult Lobby() {
+        return Request.IsHtmx()
+            ? View("_PlayerList", Game!.Players)
+            : View(Game);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> PageFrame() {
         throw new NotImplementedException();
     }
 
@@ -53,11 +61,6 @@ public class GameController : Controller {
     [HttpPost]
     [Authorize(Policy = "IsGameOwner")]
     public async Task<IActionResult> KickPlayer() {
-        throw new NotImplementedException();
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> PageFrame() {
         throw new NotImplementedException();
     }
 

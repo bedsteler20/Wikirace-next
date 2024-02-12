@@ -76,7 +76,7 @@ internal class DatabaseRepository : IRepository {
 
         if (game.State != GameState.WaitingForPlayers) return null;
 
-        if (game.Players.Count >= game.MaxPlayers) return null;
+        if ((game.Players?.Count() ?? 0) >= game.MaxPlayers) return null;
 
         var player = new Player {
             Username = playerName,
@@ -86,6 +86,7 @@ internal class DatabaseRepository : IRepository {
             JoinedAt = DateTime.Now,
             LastActiveAt = DateTime.Now,
             CurrentPage = game.StartPage,
+            Id = Guid.NewGuid().ToString(),
         };
 
         _database.Players.Add(player);

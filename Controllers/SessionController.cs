@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Wikirace.Models;
 using Wikirace.Repository;
+using Wikirace.Services;
+using Wikirace.Utils;
 
 namespace Wikirace.Controllers;
 
@@ -11,10 +13,12 @@ namespace Wikirace.Controllers;
 public class SessionController : Controller {
     private readonly ILogger<SessionController> _logger;
     private readonly IRepository _repository;
+    private readonly ClientEventsService _clientEventsService;
 
-    public SessionController(ILogger<SessionController> logger, IRepository repository) {
+    public SessionController(ILogger<SessionController> logger, IRepository repository, ClientEventsService clientEventsService) {
         _logger = logger;
         _repository = repository;
+        _clientEventsService = clientEventsService;
     }
 
     [HttpGet]
@@ -39,9 +43,10 @@ public class SessionController : Controller {
             return View(model);
         }
 
-        await _repository.JoinGame(game.Id, model.DisplayName, User!.Identity!.Name!);
+        await _repository.JoinGame(game.Id, model.DisplayName, User!.GetUserId()!);
+        await _clientEventsService.SendEvent("refresh-lobby", game.Id, null);
 
-        return RedirectToAction("Play", "Game", new { gameId = game.Id });
+        return RedirectToAction("Lobby", "Game", new { gameId = game.Id });
     }
 
     // TODO: Disallow anonymous users from creating games
@@ -57,8 +62,9 @@ public class SessionController : Controller {
         }
 
         var game = await _repository.CreateGame(model.StartPage, model.EndPage, model.MaxPlayers, model.GameType);
+        await _repository.JoinGame(game.Id, model.DisplayName, User!.GetUserId()!);
 
-        return RedirectToAction("Play", "Game", new { gameId = game.Id });
+        return RedirectToAction("Lobby", "Game", new { gameId = game.Id });
     }
 
 

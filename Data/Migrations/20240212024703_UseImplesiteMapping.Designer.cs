@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wikirace.Data;
 
@@ -10,9 +11,11 @@ using Wikirace.Data;
 namespace Wikirace.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240212024703_UseImplesiteMapping")]
+    partial class UseImplesiteMapping
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
@@ -292,6 +295,14 @@ namespace Wikirace.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GameId");
+
+                    b.HasIndex("IsOwner")
+                        .IsUnique()
+                        .HasFilter("[IsOwner] = 1");
+
+                    b.HasIndex("IsWinner")
+                        .IsUnique()
+                        .HasFilter("[IsWinner] = 0");
 
                     b.HasIndex("UserId");
 
