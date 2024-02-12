@@ -46,6 +46,16 @@ public static class Extensions {
         return user.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 
+    /// <summary>
+    /// Finds the index of the first element in the sequence that satisfies a specified condition.
+    /// </summary>
+    /// <typeparam name="T">The type of elements in the sequence.</typeparam>
+    /// <param name="source">The sequence to search.</param>
+    /// <param name="predicate">A function to test each element for a condition.</param>
+    /// <returns>
+    /// The zero-based index of the first occurrence of an element that satisfies the condition,
+    /// or <c>null</c> if no such element is found.
+    /// </returns>
     public static int? IndexOf<T>(this IEnumerable<T> source, Func<T, bool> predicate) {
         var index = 0;
         foreach (var item in source) {

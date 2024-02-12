@@ -4,6 +4,9 @@ using Wikirace.Repository;
 
 namespace Wikirace.Controllers;
 
+/// <summary>
+/// Controller for managing game sessions.
+/// </summary>
 [Route("[controller]/[action]")]
 public class SessionController : Controller {
     private readonly ILogger<SessionController> _logger;

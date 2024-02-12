@@ -8,6 +8,9 @@ namespace Wikirace;
 public class IsGameOwnerRequirement : IAuthorizationRequirement { }
 
 
+/// <summary>
+/// Handles the authorization requirement for determining if the current user is the owner of the game.
+/// </summary>
 public class IsGameOwnerRequirementHandler : AuthorizationHandler<IsGameOwnerRequirement> {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, IsGameOwnerRequirement requirement) {
         var isInGameReq = context.Requirements.IndexOfType<IsInGameRequirement>();

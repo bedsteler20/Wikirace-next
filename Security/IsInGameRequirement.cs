@@ -8,7 +8,11 @@ namespace Wikirace.Security;
 public class IsInGameRequirement : IAuthorizationRequirement { }
 
 
+/// <summary>
+/// Handles the authorization requirement for checking if the user is in a game.
+/// </summary>
 public class IsInGameRequirementHandler : AuthorizationHandler<IsInGameRequirement> {
+    
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, IsInGameRequirement requirement) {
         // context.Resource has a dynamic type, when inspecting it in the debugger, it's a internal
         // class so we can't see the properties. We can use the PullProperty extension method to
