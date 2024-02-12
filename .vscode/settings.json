@@ -1,0 +1,74 @@
+{
+    "browse-lite.chromeExecutable": "/home/bedsteler20/.local/share/flatpak/exports/bin/com.google.Chrome",
+    "forbeslindesay-taskrunner.source": "Workspace",
+    "typescript.tsserver.watchOptions": {},
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        // "wwwroot/lib": true,
+        "obj": true,
+        "bin": true,
+        ".cache": true,
+        ".vs": true,
+        ".config": true,
+        "wikirace.db-shm": true,
+        "wikirace.db-wal": true,
+        "node_modules": true,
+        "**/.gitkeep": true
+    },
+    "cSpell.words": [
+        "ASPNETCORE",
+        "beforeunload",
+        "easymde",
+        "Hasher",
+        "htmx",
+        "iframe",
+        "outfile",
+        "signalr",
+        "wikibase",
+        "Wikirace"
+    ],
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            
+            "database": "${workspaceFolder:Wikirace}/wikirace.db",
+            "name": "Wikirace"
+        }
+    ],
+    "material-icon-theme.files.associations": {
+        // "*.cshtml": "html",
+        "libman.json": "lib",
+        "appsettings.json": "tune",
+        "appsettings.Development.json": "tune",
+        ".vscode/extensions.json": "vscode",
+        ".vscode/launch.json": "vscode",
+        ".vscode/settings.json": "vscode",
+        ".vscode/tasks.json": "vscode"
+    },
+    "material-icon-theme.folders.associations": {
+        "Views/Auth": "",
+        "Views/Settings": "",
+        "Views/Home": "",
+        "Properties": "config",
+        "Hubs": "connection",
+        "Entities": "mappings",
+        "Repositories": "global",
+        "Scripts": "Typescript",
+        "Areas": "layout"
+    },
+
+    "files.associations": {
+        "libman.json": "jsonc",
+        "appsettings.json": "jsonc",
+        "appsettings.*.json": "jsonc"
+    },
+    "terminal.integrated.env.linux": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+    }
+}

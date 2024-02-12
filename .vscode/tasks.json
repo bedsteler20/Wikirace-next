@@ -1,0 +1,77 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "group": "build",
+            "command": "dotnet build",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+        },
+        {
+            "label": "migrate",
+            "type": "shell",
+            "command": "dotnet ef migrations add ${input:migration-name} -o Data/Migrations",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "update-database",
+            "type": "shell",
+            "command": "dotnet ef database update",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "tools-restore",
+            "type": "shell",
+            "command": "dotnet tool restore",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "restore",
+            "type": "shell",
+            "command": "dotnet restore",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "migration-name",
+            "type": "promptString",
+            "description": "Enter migration name",
+        }
+    ]
+}
