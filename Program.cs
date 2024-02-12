@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Wikirace.Security;
 using Wikirace.Data;
+using Wikirace.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,7 @@ builder.Services.AddMvcCore(options => {
 // Database stuff
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=wikirace.db"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
+builder.Services.AddDatabaseRepository();
 // Email
 
 // builder.Services.AddTransient<IEmailSender, EmailSenderService>();
