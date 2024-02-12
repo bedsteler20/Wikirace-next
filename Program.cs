@@ -44,6 +44,7 @@ builder.Services.AddRouting(options => {
 
 // Game state
 builder.Services.AddServerSentEvents();
+builder.Services.AddSingleton<ClientEventsService>();
 
 var app = builder.Build();
 

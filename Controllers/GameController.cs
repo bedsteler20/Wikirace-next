@@ -3,29 +3,72 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Wikirace.Data;
+using Wikirace.Repository;
 
 namespace Wikirace.Controllers;
 
+// Todo: Add server sent events for game state updates.
 
-
-[Route("[controller]/[action]")]
+[Route("[controller]/{gameId}/[action]")]
+[Authorize(Policy = "IsInGame")]
 public class GameController : Controller {
     private readonly ILogger<GameController> _logger;
+    private readonly IRepository _repository;
 
-    public GameController(ILogger<GameController> logger) {
+    // Helper properties to access the game and player from the HttpContext.
+    // These are set in the IsInGameRequirementHandler. So thay will only be 
+    // available if the action has the Authorization(Policy = "IsInGame") attribute.
+    private Game? Game => HttpContext.Items["Game"] as Game;
+    private Player? Player => HttpContext.Items["Player"] as Player;
+
+
+    public GameController(ILogger<GameController> logger, IRepository repository) {
         _logger = logger;
-    }
-
-    [HttpPost]
-    public IActionResult Join(string id) {
-        return RedirectToAction("Play", new { id });
+        _repository = repository;
     }
 
     [HttpGet]
-    [Authorize(Policy = "IsInGame")]
-    public IActionResult Create() {
+    public IActionResult Play() {
         return View();
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Lobby() {
+        throw new NotImplementedException();
+    }
 
+    [HttpPost]
+    [Authorize(Policy = "IsGameOwner")]
+    public async Task<IActionResult> End() {
+        throw new NotImplementedException();
+    }
+
+    [HttpPost]
+    [Authorize(Policy = "IsGameOwner")]
+    public async Task<IActionResult> Start() {
+        throw new NotImplementedException();
+    }
+
+    [HttpPost]
+    [Authorize(Policy = "IsGameOwner")]
+    public async Task<IActionResult> KickPlayer() {
+        throw new NotImplementedException();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> PageFrame() {
+        throw new NotImplementedException();
+    }
+
+
+    [HttpPost]
+    public async Task<IActionResult> Leave() {
+        throw new NotImplementedException();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdatePage() {
+        throw new NotImplementedException();
+    }
 }
