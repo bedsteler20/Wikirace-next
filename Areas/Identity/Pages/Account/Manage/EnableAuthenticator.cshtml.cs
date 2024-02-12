@@ -9,16 +9,17 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Wikirace.Data;
+using Wikirace.Security;
 
-namespace Wikirace.Areas.Identity.Pages.Account.Manage
-{
-    public class EnableAuthenticatorModel : PageModel
-    {
+namespace Wikirace.Areas.Identity.Pages.Account.Manage {
+    [Authorize(Policy = Polices.NotAnonymous)]
+    public class EnableAuthenticatorModel : PageModel {
         private readonly UserManager<AppUser> _userManager;
         private readonly ILogger<EnableAuthenticatorModel> _logger;
         private readonly UrlEncoder _urlEncoder;
@@ -28,8 +29,7 @@ namespace Wikirace.Areas.Identity.Pages.Account.Manage
         public EnableAuthenticatorModel(
             UserManager<AppUser> userManager,
             ILogger<EnableAuthenticatorModel> logger,
-            UrlEncoder urlEncoder)
-        {
+            UrlEncoder urlEncoder) {
             _userManager = userManager;
             _logger = logger;
             _urlEncoder = urlEncoder;
@@ -72,8 +72,7 @@ namespace Wikirace.Areas.Identity.Pages.Account.Manage
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
-        public class InputModel
-        {
+        public class InputModel {
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -85,11 +84,9 @@ namespace Wikirace.Areas.Identity.Pages.Account.Manage
             public string Code { get; set; }
         }
 
-        public async Task<IActionResult> OnGetAsync()
-        {
+        public async Task<IActionResult> OnGetAsync() {
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
+            if (user == null) {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
@@ -98,16 +95,13 @@ namespace Wikirace.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
+        public async Task<IActionResult> OnPostAsync() {
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
+            if (user == null) {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            if (!ModelState.IsValid)
-            {
+            if (!ModelState.IsValid) {
                 await LoadSharedKeyAndQrCodeUriAsync(user);
                 return Page();
             }
@@ -118,8 +112,7 @@ namespace Wikirace.Areas.Identity.Pages.Account.Manage
             var is2faTokenValid = await _userManager.VerifyTwoFactorTokenAsync(
                 user, _userManager.Options.Tokens.AuthenticatorTokenProvider, verificationCode);
 
-            if (!is2faTokenValid)
-            {
+            if (!is2faTokenValid) {
                 ModelState.AddModelError("Input.Code", "Verification code is invalid.");
                 await LoadSharedKeyAndQrCodeUriAsync(user);
                 return Page();
@@ -131,24 +124,19 @@ namespace Wikirace.Areas.Identity.Pages.Account.Manage
 
             StatusMessage = "Your authenticator app has been verified.";
 
-            if (await _userManager.CountRecoveryCodesAsync(user) == 0)
-            {
+            if (await _userManager.CountRecoveryCodesAsync(user) == 0) {
                 var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
                 RecoveryCodes = recoveryCodes.ToArray();
                 return RedirectToPage("./ShowRecoveryCodes");
-            }
-            else
-            {
+            } else {
                 return RedirectToPage("./TwoFactorAuthentication");
             }
         }
 
-        private async Task LoadSharedKeyAndQrCodeUriAsync(AppUser user)
-        {
+        private async Task LoadSharedKeyAndQrCodeUriAsync(AppUser user) {
             // Load the authenticator key & QR code URI to display on the form
             var unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
-            if (string.IsNullOrEmpty(unformattedKey))
-            {
+            if (string.IsNullOrEmpty(unformattedKey)) {
                 await _userManager.ResetAuthenticatorKeyAsync(user);
                 unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
             }
@@ -159,25 +147,21 @@ namespace Wikirace.Areas.Identity.Pages.Account.Manage
             AuthenticatorUri = GenerateQrCodeUri(email, unformattedKey);
         }
 
-        private string FormatKey(string unformattedKey)
-        {
+        private string FormatKey(string unformattedKey) {
             var result = new StringBuilder();
             int currentPosition = 0;
-            while (currentPosition + 4 < unformattedKey.Length)
-            {
+            while (currentPosition + 4 < unformattedKey.Length) {
                 result.Append(unformattedKey.AsSpan(currentPosition, 4)).Append(' ');
                 currentPosition += 4;
             }
-            if (currentPosition < unformattedKey.Length)
-            {
+            if (currentPosition < unformattedKey.Length) {
                 result.Append(unformattedKey.AsSpan(currentPosition));
             }
 
             return result.ToString().ToLowerInvariant();
         }
 
-        private string GenerateQrCodeUri(string email, string unformattedKey)
-        {
+        private string GenerateQrCodeUri(string email, string unformattedKey) {
             return string.Format(
                 CultureInfo.InvariantCulture,
                 AuthenticatorUriFormat,

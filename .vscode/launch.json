@@ -18,7 +18,8 @@
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
-            }
+            },
+            
         },
         {
             "name": "C#: Wikirace Debug",

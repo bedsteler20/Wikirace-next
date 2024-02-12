@@ -5,14 +5,18 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Wikirace.Data;
+using Wikirace.Security;
 
 namespace Wikirace.Areas.Identity.Pages.Account.Manage
 {
+    [Authorize(Policy = Polices.NotAnonymous)]
+
     public class DeletePersonalDataModel : PageModel
     {
         private readonly UserManager<AppUser> _userManager;

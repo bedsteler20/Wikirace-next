@@ -36,7 +36,6 @@
         {
             "previewLimit": 50,
             "driver": "SQLite",
-
             "database": "wikirace.db",
             "name": "Wikirace"
         }
@@ -70,5 +69,5 @@
     },
     "terminal.integrated.env.linux": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-    }
+    },
 }
