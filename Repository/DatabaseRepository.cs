@@ -2,10 +2,10 @@
 using Wikirace.Data;
 
 namespace Wikirace.Repository;
-
+// TODO: Add logging
 internal class DatabaseRepository : IRepository {
     private readonly AppDbContext _database;
-    
+
     public DatabaseRepository(AppDbContext database) {
         _database = database;
     }
@@ -20,6 +20,7 @@ internal class DatabaseRepository : IRepository {
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
             State = GameState.WaitingForPlayers,
+            Id = Guid.NewGuid().ToString(),
         };
         _database.Games.Add(game);
         await _database.SaveChangesAsync();

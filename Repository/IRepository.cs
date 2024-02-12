@@ -2,6 +2,7 @@
 
 namespace Wikirace.Repository;
 
+// TODO: Document
 public interface IRepository {
     public Task<Game?> GetGame(string gameId);
     public Task<Game?> GetGameByJoinCode(string joinCode);
