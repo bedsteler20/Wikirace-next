@@ -38,6 +38,7 @@ builder.Services.AddAuthorization(options => {
     options.AddPolicy("IsGameOwner", policy =>
         policy.Requirements.Add(new IsGameOwnerRequirement()));
 });
+builder.Services.AddAnonymousUserMiddleware();
 
 // Routing
 builder.Services.AddRouting(options => {
@@ -62,6 +63,7 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthentication();
+app.UseAnonymousUser();
 app.MapRazorPages();
 app.MapServerSentEvents("/game/{gameId}/state");
 app.UseMvc();
