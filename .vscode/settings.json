@@ -36,8 +36,8 @@
         {
             "previewLimit": 50,
             "driver": "SQLite",
-            
-            "database": "${workspaceFolder:Wikirace}/wikirace.db",
+
+            "database": "wikirace.db",
             "name": "Wikirace"
         }
     ],

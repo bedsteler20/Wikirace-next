@@ -49,8 +49,10 @@ internal class DatabaseRepository : IRepository {
     /// </summary>
     /// <param name="gameId">The ID of the game to retrieve.</param>
     /// <returns>The retrieved game, or null if no game with the specified ID is found.</returns>
-    public Task<Game?> GetGame(string gameId) {
-        return _database.Games.FirstOrDefaultAsync(g => g.Id == gameId);
+    public async Task<Game?> GetGame(string gameId) {
+        await _database.Games.LoadAsync();
+        await _database.Players.LoadAsync();
+        return await _database.Games.FirstOrDefaultAsync(g => g.Id == gameId);
     }
 
     /// <summary>
@@ -58,8 +60,10 @@ internal class DatabaseRepository : IRepository {
     /// </summary>
     /// <param name="joinCode">The join code of the game to retrieve.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the retrieved game, or null if no game is found.</returns>
-    public Task<Game?> GetGameByJoinCode(string joinCode) {
-        return _database.Games.FirstOrDefaultAsync(g => g.JoinCode == joinCode);
+    public async Task<Game?> GetGameByJoinCode(string joinCode) {
+        await _database.Games.LoadAsync();
+        await _database.Players.LoadAsync();
+        return await _database.Games.FirstOrDefaultAsync(g => g.JoinCode == joinCode);
     }
 
     /// <summary>

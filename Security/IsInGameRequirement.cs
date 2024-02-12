@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.EntityFrameworkCore;
 using Wikirace.Data;
 using Wikirace.Utils;
 
@@ -12,7 +13,7 @@ public class IsInGameRequirement : IAuthorizationRequirement { }
 /// Handles the authorization requirement for checking if the user is in a game.
 /// </summary>
 public class IsInGameRequirementHandler : AuthorizationHandler<IsInGameRequirement> {
-    
+
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, IsInGameRequirement requirement) {
         // context.Resource has a dynamic type, when inspecting it in the debugger, it's a internal
         // class so we can't see the properties. We can use the PullProperty extension method to
@@ -25,6 +26,10 @@ public class IsInGameRequirementHandler : AuthorizationHandler<IsInGameRequireme
 
         var game = database?.Games.FirstOrDefault(g => g.Id == gameId);
         var player = database?.Players.FirstOrDefault(p => p.GameId == gameId && p.UserId == userId);
+
+        // TODO make async
+        database?.Players.Load();
+        database?.Games.Load();
 
         if (game is null || player is null) {
             context.Fail();
