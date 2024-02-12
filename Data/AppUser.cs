@@ -1,3 +1,4 @@
+#nullable disable
 using Microsoft.AspNetCore.Identity;
 
 namespace Wikirace.Data;

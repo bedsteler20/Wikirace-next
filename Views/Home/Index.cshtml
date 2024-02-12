@@ -8,23 +8,12 @@
             <img src="~/icons/wikirace.svg"></img>
             <h1 class="display-4 pb-4">Wikirace</h1>
 
-            <form asp-area="Game" asp-controller="JoinGame" asp-action="Index" method="post" style="display: contents;">
-                <div class="w-75 d-flex flex-row">
-                    @* <input asp-for="JoinCode" type="text" class="join-code-input text-center  form-control w-100"
-                        placeholder="Enter a Join Code" /> *@
-                </div>
-
-                <div class="w-75 d-flex flex-row">
-                    @* <input asp-for="DisplayName" type="text" class="display-name-input text-center form-control w-100"
-                        placeholder="Enter a Display Name" /> *@
-                </div>
-
+            <div style="display: contents;">
                 <div class="d-flex flex-row gap-2 w-75 pb-4 pt-2">
-                    <button type="submit" class="btn btn-primary w-100">Join Game</button>
-                    <a class="btn btn-warning w-100" asp-area="Game" asp-controller="CreateGame"
-                        asp-action="Index">Create Game</a>
+                    <a asp-controller="Session" asp-action="Join" class="btn btn-primary w-100">Join Game</a>
+                    <a asp-controller="Session" asp-action="Create" class="btn btn-warning w-100">Create Game</a>
                 </div>
-            </form>
+            </div>
             <h3 class="text-md">How to Play</h3>
             <p class="lead text-center">
                 Welcome to Wikirace! The goal of the game is to get from one Wikipedia page to another using

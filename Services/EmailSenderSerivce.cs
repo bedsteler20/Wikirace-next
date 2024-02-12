@@ -10,11 +10,16 @@ public class EmailSenderOptions {
     public string? SendGridKey { get; set; }
 }
 
-public class EmailSenderService(IOptions<EmailSenderOptions> optionsAccessor,
-                   ILogger<EmailSenderService> logger) : IEmailSender {
-    private readonly ILogger _logger = logger;
+public class EmailSenderService : IEmailSender {
+    private readonly ILogger _logger;
 
-    public EmailSenderOptions Options { get; } = optionsAccessor.Value;
+    public EmailSenderService(IOptions<EmailSenderOptions> optionsAccessor,
+                       ILogger<EmailSenderService> logger) {
+        _logger = logger;
+        Options = optionsAccessor.Value;
+    }
+
+    public EmailSenderOptions Options { get; }
 
     public async Task SendEmailAsync(string toEmail, string subject, string message) {
         if (string.IsNullOrEmpty(Options.SendGridKey)) {

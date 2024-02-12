@@ -20,4 +20,5 @@ public class Game {
     public DateTime FinishedAt { get; set; }
     public int MaxPlayers { get; set; }
     public string JoinCode { get; set; }
+    public GameType GameType { get; set; }
 }

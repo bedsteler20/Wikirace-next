@@ -14,7 +14,6 @@ public class HomeController : Controller {
 
     [HttpGet]
     [Route("/")]
-    [Authorize(Policy = "IsInGame")]
     public IActionResult Index() {
         return View();
     }

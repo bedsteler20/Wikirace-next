@@ -12,12 +12,6 @@ namespace Wikirace.Controllers;
 public class GameController : Controller {
     private readonly ILogger<GameController> _logger;
 
-    public override void OnActionExecuting(ActionExecutingContext context) {
-        
-
-        base.OnActionExecuting(context);
-    }
-
     public GameController(ILogger<GameController> logger) {
         _logger = logger;
     }
