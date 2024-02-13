@@ -2,21 +2,17 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "Build Project",
             "type": "shell",
             "group": "build",
             "command": "dotnet build",
-            "problemMatcher": [
-                "$msCompile"
-            ],
+            "problemMatcher": ["$msCompile"]
         },
         {
-            "label": "migrate",
+            "label": "Create Migration",
             "type": "shell",
             "command": "dotnet ef migrations add ${input:migration-name} -o Data/Migrations",
-            "problemMatcher": [
-                "$msCompile"
-            ],
+            "problemMatcher": ["$msCompile"],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -25,12 +21,10 @@
             }
         },
         {
-            "label": "update-database",
+            "label": "Update Database",
             "type": "shell",
             "command": "dotnet ef database update",
-            "problemMatcher": [
-                "$msCompile"
-            ],
+            "problemMatcher": ["$msCompile"],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -39,12 +33,10 @@
             }
         },
         {
-            "label": "tools-restore",
+            "label": "Restore Tools",
             "type": "shell",
             "command": "dotnet tool restore",
-            "problemMatcher": [
-                "$msCompile"
-            ],
+            "problemMatcher": ["$msCompile"],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -53,25 +45,35 @@
             }
         },
         {
-            "label": "restore",
+            "label": "Restore Project",
             "type": "shell",
             "command": "dotnet restore",
-            "problemMatcher": [
-                "$msCompile"
-            ],
+            "problemMatcher": ["$msCompile"],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
                 "focus": false,
                 "panel": "shared"
             }
+        },
+        {
+            "label": "Compile Typescript",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "msbuild",
+                "${workspaceFolder}/Wikirace.csproj",
+                "/t:CompileTypeScript",
+                "/p:BuildingProject=true"
+            ],
+            "problemMatcher": ["$msCompile", "$tsc"]
         }
     ],
     "inputs": [
         {
             "id": "migration-name",
             "type": "promptString",
-            "description": "Enter migration name",
+            "description": "Enter migration name"
         }
     ]
 }

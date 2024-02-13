@@ -140,6 +140,7 @@ namespace Wikirace.JavaScript {
             this.attachShadow({ mode: 'open' });
             this.shadowRoot!.innerHTML = PageFrame.Template;
             this.shadowRoot!.addEventListener('click', this.OnClick.bind(this));
+            this.UpdatePage(this.CurrentPage!);
         }
     }
 

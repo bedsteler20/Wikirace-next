@@ -8,7 +8,7 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "Build Project",
             "program": "${workspaceFolder}/bin/Debug/net8.0/Wikirace.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
