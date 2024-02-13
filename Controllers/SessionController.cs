@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Wikirace.Data;
 using Wikirace.Models;
 using Wikirace.Repository;
 using Wikirace.Services;
@@ -43,8 +44,18 @@ public class SessionController : Controller {
             return View(model);
         }
 
+        if (game.Players.Count() >= game.MaxPlayers) {
+            ModelState.AddModelError("JoinCode", "Game is full");
+            return View(model);
+        }
+
+        if (game.Players.Any(p => p.UserId == User!.GetUserId())) {
+            ModelState.AddModelError("JoinCode", "You are already in this game");
+            return View(model);
+        }
+
         await _repository.JoinGame(game.Id, model.DisplayName, User!.GetUserId()!);
-        await _clientEventsService.SendEvent("refresh-lobby", game.Id, null);
+        await _clientEventsService.SendEvent(EventNames.RefreshLobby, game.Id, null);
 
         return RedirectToAction("Lobby", "Game", new { gameId = game.Id });
     }

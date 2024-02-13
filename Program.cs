@@ -31,12 +31,18 @@ identity.AddEntityFrameworkStores<AppDbContext>();
 identity.AddDefaultUI();
 
 builder.Services.AddSession();
+
 builder.Services.AddSingleton<IAuthorizationHandler, IsInGameRequirementHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, IsGameOwnerRequirementHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, NotAnonymousRequirementHandler>();
+
 builder.Services.AddAuthorization(options => {
-    options.AddPolicy("IsInGame", policy =>
+    options.AddPolicy(Polices.IsInGame, policy =>
         policy.Requirements.Add(new IsInGameRequirement()));
-    options.AddPolicy("IsGameOwner", policy =>
+    options.AddPolicy(Polices.IsGameOwner, policy =>
         policy.Requirements.Add(new IsGameOwnerRequirement()));
+    options.AddPolicy(Polices.NotAnonymous, policy =>
+        policy.Requirements.Add(new NotAnonymousRequirement()));
 });
 builder.Services.AddAnonymousUserMiddleware();
 

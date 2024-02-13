@@ -78,19 +78,4 @@ public static class Extensions {
     }
 
 
-    /// <summary>
-    /// Determines whether the specified user is anonymous.
-    /// </summary>
-    /// <param name="user">The user to check.</param>
-    /// <returns><c>true</c> if the user is anonymous; otherwise, <c>false</c>.</returns>
-    public static bool IsAnonymous(this ClaimsPrincipal user) {
-        var claim = user.FindFirstValue(ClaimTypes.Anonymous);
-
-        if (claim  == null) {
-            return false;
-        }
-
-        return bool.Parse(claim);
-    }
-
 }

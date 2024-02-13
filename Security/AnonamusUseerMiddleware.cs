@@ -34,8 +34,6 @@ public class AnonymousUserMiddleware : IMiddleware {
             await signInManager.SignInAsync(user, isPersistent: true);
         }
 
-        _ = context.User!.Claims.Append(new Claim(ClaimTypes.Anonymous, "true"));
-
         await next(context);
     }
 }

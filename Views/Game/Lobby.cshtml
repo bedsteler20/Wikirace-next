@@ -3,5 +3,10 @@
     ViewBag.Title = "Lobby";
 }
 <div>Join Code: @Model.JoinCode</div>
-<div>Players:</div>
-<partial name="_PlayerList" model="@Model.Players" />
+<div hx-sse="connect:/game/@Model.Id/state">
+    <div>Players:</div>
+    <div hx-trigger="sse:@EventNames.RefreshLobby" hx-get hx-action="Lobby" hx-controller="Game"
+        hx-route-gameId="@Model.Id" hx-swap="innerHTML">
+        <partial name="_PlayerList" model="@Model.Players" />
+    </div>
+</div>

@@ -1,18 +1,16 @@
-
-
 using Htmx;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Wikirace.Data;
 using Wikirace.Repository;
+using Wikirace.Security;
 
 namespace Wikirace.Controllers;
 
 // Todo: Add server sent events for game state updates.
 
 [Route("[controller]/{gameId}/[action]")]
-[Authorize(Policy = "IsInGame")]
+[Authorize(Policy = Polices.IsInGame)]
 public class GameController : Controller {
     private readonly ILogger<GameController> _logger;
     private readonly IRepository _repository;
@@ -37,7 +35,7 @@ public class GameController : Controller {
     [HttpGet]
     public IActionResult Lobby() {
         return Request.IsHtmx()
-            ? View("_PlayerList", Game!.Players)
+            ? PartialView("_PlayerList", Game!.Players)
             : View(Game);
     }
 
@@ -47,13 +45,13 @@ public class GameController : Controller {
     }
 
     [HttpPost]
-    [Authorize(Policy = "IsGameOwner")]
+    [Authorize(Policy = Polices.IsGameOwner)]
     public async Task<IActionResult> End() {
         throw new NotImplementedException();
     }
 
     [HttpPost]
-    [Authorize(Policy = "IsGameOwner")]
+    [Authorize(Policy = Polices.IsGameOwner)]
     public async Task<IActionResult> Start() {
         throw new NotImplementedException();
     }
