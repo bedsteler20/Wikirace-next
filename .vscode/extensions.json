@@ -1,3 +1,7 @@
 {
-    "recommendations": ["arjittw.musicplayer"]
+    "recommendations": [
+        "arjittw.musicplayer",
+        "bashmish.es6-string-css",
+        "hjb2012.vscode-es6-string-html"
+    ]
 }

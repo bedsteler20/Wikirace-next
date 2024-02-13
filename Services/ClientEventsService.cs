@@ -26,7 +26,7 @@ public class ClientEventsService {
         }
     }
 
-    public async Task SendEvent(string type, string gameId, string? playerId) {
+    public async Task SendEvent(string type, string gameId, string? playerId = null) {
         var clients = _serverSentEventsService.GetClients(gameId);
 
         var message = new ServerSentEvent {

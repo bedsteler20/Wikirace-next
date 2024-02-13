@@ -103,8 +103,32 @@ internal class DatabaseRepository : IRepository {
     /// </summary>
     /// <param name="gameId">The ID of the game to start.</param>
     /// <returns>A task representing the asynchronous operation. The task result contains the started game, or null if the game was not found.</returns>
-    public Task<Game?> StartGame(string gameId) {
-        throw new NotImplementedException();
+    public async Task<Game?> StartGame(string gameId) {
+        var game = _database.Games.Find(gameId);
+        if (game == null) return null;
+
+        game.State = GameState.InProgress;
+        game.UpdatedAt = DateTime.Now;
+        await _database.SaveChangesAsync();
+        return game;
+    }
+
+    /// <summary>
+    /// Kicks a player from a game.
+    /// </summary>
+    /// <param name="gameId">The ID of the game.</param>
+    /// <param name="playerId">The ID of the player.</param>
+    /// <returns>The updated game object if successful, otherwise null.</returns>
+    public async Task<Game?> KickPlayer(string gameId, string playerId) {
+        var game = _database.Games.Find(gameId);
+        if (game == null) return null;
+
+        var player = _database.Players.Find(playerId);
+        if (player == null) return null;
+
+        _database.Players.Remove(player);
+        await _database.SaveChangesAsync();
+        return game;
     }
 }
 

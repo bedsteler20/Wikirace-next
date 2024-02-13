@@ -53,4 +53,12 @@ public interface IRepository {
     /// <param name="gameId">The unique identifier of the game.</param>
     /// <returns>The updated game object if successful, otherwise null.</returns>
     public Task<Game?> EndGame(string gameId);
+
+    /// <summary>
+    /// Kicks a player from a game.
+    /// </summary>
+    /// <param name="gameId">The ID of the game.</param>
+    /// <param name="playerId">The ID of the player to kick.</param>
+    /// <returns>A task representing the asynchronous operation. The task result is the updated game object, or null if the game or player does not exist.</returns>
+    public Task<Game?> KickPlayer(string gameId, string playerId);
 }
