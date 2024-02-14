@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Wikirace.Data;
 
-public class Player {
+public class Player
+{
     [Key]
     [Required]
     public string Id { get; set; }

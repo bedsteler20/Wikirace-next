@@ -11,10 +11,27 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                @RenderSection("NavbarStart", required: false)
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                @RenderSection("NavbarEnd", required: false)
+            </ul>
+        </div>
+    </nav>
 
     @RenderBody()
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src=" ~/lib/jquery/dist/jquery.min.js">
+    </script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/htmx/dist/htmx.min.js"></script>
     <script src="~/lib/htmx/dist/ext/sse.js"></script>

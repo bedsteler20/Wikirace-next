@@ -1,12 +1,36 @@
-@model Game
+@model Player
 @{
     ViewBag.Title = "Lobby";
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
 }
-<div>Join Code: @Model.JoinCode</div>
-<div hx-sse="connect:/game/@Model.Id/state">
+
+<div>Join Code: @Model.Game.JoinCode</div>
+
+@section NavbarStart {
+    @if (Model.IsOwner) {
+        <li class="nav-item">
+            <button class="nav-link btn btn-primary ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click" hx-post hx-action="Start" hx-controller="Game" hx-route-gameId="@Model.Game.Id">Start</button>
+        </li>
+    }
+}
+
+@section NavbarEnd {
+    <li class="nav-item">
+        @if (Model.IsOwner) {
+            <button class="nav-link btn btn-danger ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click" hx-post hx-confirm="Are you sure you want to end the game" hx-action="End" hx-controller="Game" hx-route-gameId="@Model.Game.Id">End</button>
+        } else {
+            <button class="nav-link btn btn-danger ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click" hx-post hx-action="Leave" 
+            hx-confirm="Are you sure you want to Leave the game" hx-controller="Game" hx-route-gameId="@Model.Game.Id">Leave</button>
+        }
+    </li>
+}
+
+<qr-code href="https://google.com"></qr-code>
+
+<div hx-sse="connect:/game/@Model.Game.Id/state">
     <div>Players:</div>
     <div hx-trigger="sse:@EventNames.RefreshLobby" hx-get hx-action="Lobby" hx-controller="Game"
-        hx-route-gameId="@Model.Id" hx-swap="innerHTML">
-        <partial name="_PlayerList" model="@Model.Players" />
+        hx-route-gameId="@Model.Game.Id" hx-swap="innerHTML">
+        <partial name="_PlayerList" model="@Model" />
     </div>
 </div>

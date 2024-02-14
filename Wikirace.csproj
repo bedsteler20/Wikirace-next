@@ -12,19 +12,18 @@
         <TypeScriptModuleKind>None</TypeScriptModuleKind>
         <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
         <TypeScriptLib>dom,es2020</TypeScriptLib>
+        <TypeScriptTarget>ES6</TypeScriptTarget>
     </PropertyGroup>
 
-    <Target Name="CompileTypeScript" Condition="'$(BuildingProject)' != 'false'"
-        DependsOnTargets="$(CompileTypeScriptDependsOn)" Inputs="@(TypeScriptCompile)"
-        Outputs="@(GeneratedJavascript)" />
+
+    <Target Name="CompileTypeScript" Condition="'$(BuildingProject)' != 'false'" DependsOnTargets="$(CompileTypeScriptDependsOn)" Inputs="@(TypeScriptCompile)" Outputs="@(GeneratedJavascript)" />
 
     <ItemGroup>
         <PackageReference Include="Htmx" Version="1.7.0" />
+        <PackageReference Include="Htmx.TagHelpers" Version="1.7.0" />
         <PackageReference Include="Lib.AspNetCore.ServerSentEvents" Version="8.3.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore"
-            Version="8.0.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore"
-            Version="8.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

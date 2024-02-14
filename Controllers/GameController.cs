@@ -11,7 +11,6 @@ namespace Wikirace.Controllers;
 // Todo: Add server sent events for game state updates.
 
 [Route("[controller]/{gameId}/[action]")]
-[Authorize(Policy = Polices.IsInGame)]
 public class GameController : Controller {
     private readonly ILogger<GameController> _logger;
     private readonly IRepository _repository;
@@ -31,38 +30,49 @@ public class GameController : Controller {
     }
 
     [HttpGet]
+    [Authorize(Policy = Polices.IsInGame)]
     public IActionResult Play() {
         return View();
     }
 
     [HttpGet]
+    [Authorize(Policy = Polices.IsInGame)]
     public IActionResult Lobby() {
+        if (Game.State != GameState.WaitingForPlayers) {
+            return RedirectToAction("Play");
+        }
         return Request.IsHtmx()
-            ? PartialView("_PlayerList", Game.Players)
-            : View(Game);
+            ? PartialView("_PlayerList", Player)
+            : View(Player);
     }
 
     [HttpGet]
+    [Authorize(Policy = Polices.IsInGame)]
     public async Task<IActionResult> PageFrame() {
-        throw new NotImplementedException();
+        return View();
     }
 
     [HttpPost]
+    [Authorize(Policy = Polices.IsInGame)]
     [Authorize(Policy = Polices.IsGameOwner)]
     public async Task<IActionResult> End() {
         throw new NotImplementedException();
     }
 
     [HttpPost]
+    [Authorize(Policy = Polices.IsInGame)]
     [Authorize(Policy = Polices.IsGameOwner)]
     public async Task<IActionResult> Start() {
         await _repository.StartGame(Game.Id);
         await _eventSender.SendEvent(EventNames.StartGame, Game!.Id);
 
+        Response.Htmx(h => h.Redirect(Url.Action("Play", new { gameId = Game!.Id })!));
+
         return Ok();
     }
 
     [HttpPost]
+    [Authorize(Policy = Polices.IsInGame)]
     [Authorize(Policy = Polices.IsGameOwner)]
     public async Task<IActionResult> KickPlayer([FromQuery] string playerId) {
         if (playerId == Player.Id) return BadRequest("You cannot kick yourself silly!");
@@ -77,11 +87,16 @@ public class GameController : Controller {
 
 
     [HttpPost]
+    [Authorize(Policy = Polices.IsInGame)]
     public async Task<IActionResult> Leave() {
-        throw new NotImplementedException();
+        Response.Htmx(h => h.Redirect("/"));
+        await _repository.KickPlayer(Game.Id, Player.Id);
+        await _eventSender.SendEvent(EventNames.RefreshLobby, Game.Id);
+        return Ok();
     }
 
     [HttpPost]
+    [Authorize(Policy = Polices.IsInGame)]
     public async Task<IActionResult> UpdatePage() {
         throw new NotImplementedException();
     }

@@ -34,9 +34,16 @@ namespace Wikirace.JavaScript {
                     transform: translateX(100%) scaleX(0.5);
                 }
             }
+
+            #page-frame {
+                overflow-x: hidden;
+                
+                padding: 20px;
+            }
         `;
 
         public static Template = /*html*/ `
+            <link rel="stylesheet" href="/css/wikipedia.css">
             <style>
                 ${PageFrame.Styles}
             </style>

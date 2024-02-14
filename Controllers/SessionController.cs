@@ -73,7 +73,7 @@ public class SessionController : Controller {
         }
 
         var game = await _repository.CreateGame(model.StartPage, model.EndPage, model.MaxPlayers, model.GameType);
-        await _repository.JoinGame(game.Id, model.DisplayName, User!.GetUserId()!);
+        await _repository.JoinGame(game.Id, model.DisplayName, User!.GetUserId()!, isOwner: true);
 
         return RedirectToAction("Lobby", "Game", new { gameId = game.Id });
     }

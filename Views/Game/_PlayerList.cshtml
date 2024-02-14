@@ -1,6 +1,6 @@
-@model IEnumerable<Player>
+@model Player
 
-@foreach (var player in Model)
+@foreach (var player in Model.Game.Players)
 {
     <div>
     <h2>@player.Username</h2>
