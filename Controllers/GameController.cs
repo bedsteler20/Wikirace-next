@@ -1,6 +1,7 @@
 using Htmx;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Wikirace.Data;
 using Wikirace.Repository;
 using Wikirace.Security;
@@ -22,11 +23,17 @@ public class GameController : Controller {
     private Game Game => (HttpContext.Items["Game"] as Game)!;
     private Player Player => (HttpContext.Items["Player"] as Player)!;
 
-
     public GameController(ILogger<GameController> logger, IRepository repository, ClientEventsService eventSender) {
         _logger = logger;
         _repository = repository;
         _eventSender = eventSender;
+    }
+
+    public override void OnActionExecuting(ActionExecutingContext context) {
+        if (Game.State == GameState.Ended) {
+            context.Result = RedirectToAction("Index", "Home");
+        }
+        base.OnActionExecuting(context);
     }
 
     [HttpGet]
@@ -56,7 +63,10 @@ public class GameController : Controller {
     [Authorize(Policy = Polices.IsInGame)]
     [Authorize(Policy = Polices.IsGameOwner)]
     public async Task<IActionResult> End() {
-        throw new NotImplementedException();
+        await _repository.EndGame(Game.Id);
+        await _eventSender.SendEvent(EventNames.EndGame, Game.Id);
+        Response.Htmx(h => h.Redirect(Url.Action("Index", "Home")!));
+        return Ok();
     }
 
     [HttpPost]

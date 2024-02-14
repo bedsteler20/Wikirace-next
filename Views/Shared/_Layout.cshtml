@@ -12,7 +12,7 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
-<body class="min-vh-100 d-flex flex-column overflow-x-hidden">
+<body hx-ext="redirect" class="min-vh-100 d-flex flex-column overflow-x-hidden">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -50,6 +50,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/htmx/dist/htmx.min.js"></script>
     <script src="~/lib/htmx/dist/ext/sse.js"></script>
+    <script src="~/js/htmx-redirect.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

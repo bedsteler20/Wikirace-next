@@ -12,12 +12,6 @@
         "wikibase",
         "Wikirace"
     ],
-    "[aspnetcorerazor]": {
-        "editor.defaultFormatter": null,
-        "editor.formatOnSave": false,
-        "editor.wordWrap": "wordWrapColumn"
-    },
-    "razor.format.enable": false,
     "sqltools.connections": [
         {
             "previewLimit": 50,

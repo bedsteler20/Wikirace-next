@@ -40,8 +40,12 @@ internal class DatabaseRepository : IRepository {
     /// </summary>
     /// <param name="gameId">The ID of the game to end.</param>
     /// <returns>A task representing the asynchronous operation. The task result is the ended game, or null if the game was not found.</returns>
-    public Task<Game?> EndGame(string gameId) {
-        throw new NotImplementedException();
+    public async Task<Game?> EndGame(string gameId) {
+        var game = _database.Games.Find(gameId) ??
+                    throw new ArgumentException("Game not found", nameof(gameId));
+        _database.Games.Remove(game);
+        await _database.SaveChangesAsync();
+        return game;
     }
 
     /// <summary>
@@ -130,6 +134,7 @@ internal class DatabaseRepository : IRepository {
         await _database.SaveChangesAsync();
         return game;
     }
+
 }
 
 

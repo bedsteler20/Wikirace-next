@@ -33,4 +33,5 @@
         hx-route-gameId="@Model.Game.Id" hx-swap="innerHTML">
         <partial name="_PlayerList" model="@Model" />
     </div>
+    <div hx-trigger="sse:@EventNames.EndGame" hx-redirect hx-alert="The game has ended" hx-get="/"></div>
 </div>
