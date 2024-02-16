@@ -2,19 +2,29 @@
 - [ ] Add host mode that makes the owner of the game not play
 - [x] Implement the play page
 - [x] Add win logic
-- [ ] Add Win page
+- [-] Add Win page
 - [ ] Record wins and losses
-    - [ ] Add ui for that
+- [ ] Add win losses ui
 - [x] Improve lobby styles
 - [x] Fix bug where page frame links don't work
 - [ ] Add a way to kick players
-- [ ] Stop players from going to special pages
+- [x] Stop players from going to special pages
 - [ ] Update Create Game page
-    - [ ] Add Client side page completion
-    - [ ] Update styles
+- [ ] Add Client side page completion
+- [ ] Update styles
 - [ ] Implement database cleanup
-    - [ ] Remove old anonymous players
-    - [ ] Remove old games
+- [ ] Remove old anonymous players
+- [ ] Remove old games
 - [ ] Add a way to report bugs
 - [ ] Add a way to report players
-- [ ] Fix win game not redirecting to win page
+- [x] Fix win game not redirecting to win page
+- [ ] Update styles for home page
+- [x] Add google analytics
+- [ ] Add social Sign in
+- [ ] Customize bootstrap
+- [x] Move scripts to partial component
+- [ ] Add privacy policy
+- [ ] Add terms of service
+- [ ] Add license
+- [x] Add gavatar
+- [ ] Fix user not linking to player

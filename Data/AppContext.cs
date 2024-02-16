@@ -19,5 +19,6 @@ public partial class AppDbContext : IdentityDbContext<AppUser> {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Game>().HasMany(g => g.Players).WithOne(p => p.Game).HasForeignKey(p => p.GameId);
         modelBuilder.Entity<Player>().HasOne(p => p.Game).WithMany(g => g.Players).HasForeignKey(p => p.GameId);
+        modelBuilder.Entity<Player>().HasOne(p => p.User).WithMany().HasForeignKey(p => p.UserId);
     }
 }
