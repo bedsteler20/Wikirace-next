@@ -22,6 +22,16 @@
     </li>
 }
 
+<div class="hidden" hx-sse="connect:/game/@Model.Game.Id/state">
+    <div hx-trigger="sse:@EventNames.EndGame" hx-redirect hx-alert="Game has ended" hx-get hx-controller="Home"
+        hx-action="Index"></div>
+    <div hx-trigger="sse:@EventNames.KickPlayer" hx-redirect
+        hx-alert="You have been kicked form the game                                                                                                   "
+        hx-get hx-controller="Home" hx-action="Index"></div>
+    <div hx-trigger="sse:@EventNames.WinGame" hx-redirect hx-get hx-controller="Game" hx-action="Win"></div>
+
+</div>
+
 <iframe class="overflow-y-hidden" src="/game/@Model.Game.Id/pageframe"></iframe>
 
 
@@ -36,6 +46,10 @@
             height: calc(100vh - 63.6px);
             width: 100%;
             border: none;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 }

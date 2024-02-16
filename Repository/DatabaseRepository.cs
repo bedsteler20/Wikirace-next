@@ -10,12 +10,21 @@ internal class DatabaseRepository : IRepository {
         _database = database;
     }
 
+    /// <summary>
+    /// Updates the current page of a player in the database.
+    /// </summary>
+    /// <param name="gameId">The ID of the game.</param>
+    /// <param name="userId">The ID of the user.</param>
+    /// <param name="page">The new page value.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
     public async Task UpdatePage(string gameId, string userId, string page) {
         var player = (from p in _database.Players
                       where p.Id == p.Id
                       where p.GameId == gameId
                       select p).First();
         player.CurrentPage = page;
+        player.Game.UpdatedAt = DateTime.Now;
+
         await _database.SaveChangesAsync();
     }
 
@@ -53,6 +62,7 @@ internal class DatabaseRepository : IRepository {
         var game = _database.Games.Find(gameId) ??
                     throw new ArgumentException("Game not found", nameof(gameId));
         _database.Games.Remove(game);
+        game.UpdatedAt = DateTime.Now;
         await _database.SaveChangesAsync();
         return game;
     }
@@ -106,6 +116,7 @@ internal class DatabaseRepository : IRepository {
             Id = Guid.NewGuid().ToString(),
         };
 
+        game.UpdatedAt = DateTime.Now;
         _database.Players.Add(player);
         await _database.SaveChangesAsync();
         return game;
@@ -139,11 +150,25 @@ internal class DatabaseRepository : IRepository {
         var player = _database.Players.Find(playerId);
         if (player == null) return null;
 
+        game.UpdatedAt = DateTime.Now;
         _database.Players.Remove(player);
         await _database.SaveChangesAsync();
         return game;
     }
 
+    /// <summary>
+    /// Represents an asynchronous operation that returns a task.
+    /// </summary>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    public Task WinGame(string gameId, string userId) {
+        var game = _database.Games.Find(gameId);
+        if (game == null) return Task.CompletedTask;
+
+        game.State = GameState.Finished;
+        game.FinishedAt = DateTime.Now;
+        game.UpdatedAt = DateTime.Now;
+        return _database.SaveChangesAsync();
+    }
 }
 
 

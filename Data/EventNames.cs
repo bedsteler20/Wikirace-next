@@ -5,5 +5,6 @@ public class EventNames {
     public const string StartGame = "StartGame";
     public const string EndGame = "EndGame";
     public const string KickPlayer = "KickPlayer";
+    public const string WinGame = "WinGame";
 
 }

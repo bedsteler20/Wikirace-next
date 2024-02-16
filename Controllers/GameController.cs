@@ -108,7 +108,14 @@ public class GameController : Controller {
     [HttpPost]
     [Authorize(Policy = Polices.IsInGame)]
     public async Task<IActionResult> UpdatePage([FromQuery] string name) {
+        if (string.IsNullOrWhiteSpace(name)) return BadRequest("Name cannot be empty");
+        if (Game.State != GameState.InProgress) return BadRequest("Game has not started yet");
         await _repository.UpdatePage(Game.Id, Player.Id, name);
+
+        if (Game.EndPage == name) {
+            await _eventSender.SendEvent(EventNames.WinGame, Game.Id, Player.Id);
+        }
+
         return Ok();
     }
 }

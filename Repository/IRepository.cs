@@ -54,7 +54,21 @@ public interface IRepository {
     /// <returns>The updated game object if successful, otherwise null.</returns>
     public Task<Game?> EndGame(string gameId);
 
+    /// <summary>
+    /// Updates the page for a specific game and user.
+    /// </summary>
+    /// <param name="gameId">The ID of the game.</param>
+    /// <param name="userId">The ID of the user.</param>
+    /// <param name="page">The updated page.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
     public Task UpdatePage(string gameId, string userId, string page);
+
+    /// <summary>
+    /// Represents a task that can be executed asynchronously.
+    /// </summary>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    public Task WinGame(string gameId, string userId);
+
     /// <summary>
     /// Kicks a player from a game.
     /// </summary>
