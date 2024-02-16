@@ -1,6 +1,7 @@
 - [x] Make join codes longer
 - [ ] Add host mode that makes the owner of the game not play
 - [x] Implement the play page
+- [x] Add win logic
 - [ ] Add Win page
 - [ ] Record wins and losses
     - [ ] Add ui for that
@@ -11,3 +12,9 @@
 - [ ] Update Create Game page
     - [ ] Add Client side page completion
     - [ ] Update styles
+- [ ] Implement database cleanup
+    - [ ] Remove old anonymous players
+    - [ ] Remove old games
+- [ ] Add a way to report bugs
+- [ ] Add a way to report players
+- [ ] Fix win game not redirecting to win page

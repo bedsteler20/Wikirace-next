@@ -112,10 +112,19 @@ public class GameController : Controller {
         if (Game.State != GameState.InProgress) return BadRequest("Game has not started yet");
         await _repository.UpdatePage(Game.Id, Player.Id, name);
 
+        Console.WriteLine("Updated page to: " + name);
         if (Game.EndPage == name) {
+            await _repository.WinGame(Game.Id, Player.Id);
+            Console.WriteLine("Winning game");
             await _eventSender.SendEvent(EventNames.WinGame, Game.Id, Player.Id);
         }
 
         return Ok();
+    }
+
+    [HttpGet]
+    [Authorize(Policy = Polices.IsInGame)]
+    public IActionResult Win() {
+        return View(Player);
     }
 }
