@@ -10,6 +10,15 @@ internal class DatabaseRepository : IRepository {
         _database = database;
     }
 
+    public async Task UpdatePage(string gameId, string userId, string page) {
+        var player = (from p in _database.Players
+                      where p.Id == p.Id
+                      where p.GameId == gameId
+                      select p).First();
+        player.CurrentPage = page;
+        await _database.SaveChangesAsync();
+    }
+
     /// <summary>
     /// Creates a new game with the specified parameters and saves it to the database.
     /// </summary>
@@ -24,7 +33,7 @@ internal class DatabaseRepository : IRepository {
             EndPage = endPage,
             MaxPlayers = maxPlayers,
             GameType = gameType,
-            JoinCode = Guid.NewGuid().ToString()[..6],
+            JoinCode = Guid.NewGuid().ToString()[..8],
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
             State = GameState.WaitingForPlayers,

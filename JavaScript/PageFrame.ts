@@ -63,8 +63,8 @@ namespace Wikirace.JavaScript {
             }
         }
 
-        public get UpdatePageEndpoint(): string | null {
-            return this.getAttribute('update-page-endpoint');
+        public get UpdatePageEndpoint(): string | null | undefined {
+            return this.getAttribute('update-page-endpoint')?.replace("%7B", "{").replace("%7D", "}");
         }
 
         public get ProgressBar(): HTMLElement {
@@ -90,12 +90,25 @@ namespace Wikirace.JavaScript {
         }
 
         public async OnClick(event: Event): Promise<void> {
+            console.log("Click")
             event.preventDefault();
             const target = event.target as HTMLAnchorElement;
-            if (target && target.tagName === 'A' && target.href) {
-                const href = target.href;
-                if (href.startsWith("./")) {
+            if (target && target.tagName === 'A' && target.hasAttribute("href")) {
+                const href = target.getAttribute("href");
+                if (href && href.startsWith("./")) {
                     const page = href.substring(2);
+                    console.log("Clicked Page:", page)
+                    if (href.startsWith("./File:")) {
+                        return;
+                    } else if (href.startsWith("./Category:")) {
+                        return;
+                    } else if (href.startsWith("./Template:")) {
+                        return;
+                    } else if (href.startsWith("./Wikipedia:")) {
+                        return;
+                    } else if (href.startsWith("./Help:")) {
+                        return;
+                    }
                     await this.UpdatePage(page);
                 }
             }

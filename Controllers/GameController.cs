@@ -39,7 +39,7 @@ public class GameController : Controller {
     [HttpGet]
     [Authorize(Policy = Polices.IsInGame)]
     public IActionResult Play() {
-        return View();
+        return View(Player);
     }
 
     [HttpGet]
@@ -55,8 +55,8 @@ public class GameController : Controller {
 
     [HttpGet]
     [Authorize(Policy = Polices.IsInGame)]
-    public async Task<IActionResult> PageFrame() {
-        return View();
+    public IActionResult PageFrame() {
+        return View(Player);
     }
 
     [HttpPost]
@@ -107,7 +107,8 @@ public class GameController : Controller {
 
     [HttpPost]
     [Authorize(Policy = Polices.IsInGame)]
-    public async Task<IActionResult> UpdatePage() {
-        throw new NotImplementedException();
+    public async Task<IActionResult> UpdatePage([FromQuery] string name) {
+        await _repository.UpdatePage(Game.Id, Player.Id, name);
+        return Ok();
     }
 }

@@ -54,6 +54,7 @@ public interface IRepository {
     /// <returns>The updated game object if successful, otherwise null.</returns>
     public Task<Game?> EndGame(string gameId);
 
+    public Task UpdatePage(string gameId, string userId, string page);
     /// <summary>
     /// Kicks a player from a game.
     /// </summary>

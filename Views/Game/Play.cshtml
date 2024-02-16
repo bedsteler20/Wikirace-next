@@ -1,8 +1,41 @@
-@model dynamic
+@model Player
 
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+    ViewBag.Title = "Play";
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
 }
 
-<h2>title</h2>
+@section NavbarEnd {
+    <li class="nav-item">
+        @if (Model.IsOwner)
+        {
+            <button class="nav-link btn btn-danger ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click" hx-post
+                hx-confirm="Are you sure you want to end the game" hx-action="End" hx-controller="Game"
+                hx-route-gameId="@Model.Game.Id">End</button>
+        }
+        else
+        {
+            <button class="nav-link btn btn-danger ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click" hx-post
+                hx-action="Leave" hx-confirm="Are you sure you want to Leave the game" hx-controller="Game"
+                hx-route-gameId="@Model.Game.Id">Leave</button>
+        }
+    </li>
+}
+
+<iframe class="overflow-y-hidden" src="/game/@Model.Game.Id/pageframe"></iframe>
+
+
+@section Styles {
+    <style>
+        body {
+            height: 100vh;
+            max-height: 100vh;
+        }
+
+        iframe {
+            height: calc(100vh - 63.6px);
+            width: 100%;
+            border: none;
+        }
+    </style>
+}

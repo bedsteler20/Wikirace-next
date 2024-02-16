@@ -1,0 +1,13 @@
+- [x] Make join codes longer
+- [ ] Add host mode that makes the owner of the game not play
+- [x] Implement the play page
+- [ ] Add Win page
+- [ ] Record wins and losses
+    - [ ] Add ui for that
+- [x] Improve lobby styles
+- [x] Fix bug where page frame links don't work
+- [ ] Add a way to kick players
+- [ ] Stop players from going to special pages
+- [ ] Update Create Game page
+    - [ ] Add Client side page completion
+    - [ ] Update styles
