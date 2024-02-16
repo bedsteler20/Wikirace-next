@@ -17,7 +17,7 @@
 - [ ] Remove old games
 - [ ] Add a way to report bugs
 - [ ] Add a way to report players
-- [ ] Fix win game not redirecting to win page
+- [x] Fix win game not redirecting to win page
 - [ ] Update styles for home page
 - [x] Add google analytics
 - [ ] Add social Sign in
@@ -26,4 +26,5 @@
 - [ ] Add privacy policy
 - [ ] Add terms of service
 - [ ] Add license
-- [ ] Add gavatar
+- [x] Add gavatar
+- [ ] Fix user not linking to player

@@ -2,11 +2,12 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Wikirace.Data;
 
-public class Player
-{
+public class Player {
     [Key]
     [Required]
     public string Id { get; set; }
@@ -43,5 +44,13 @@ public class Player
 
     [ForeignKey("GameId")]
     public Game Game { get; set; }
+
+    public string HashEmail() {
+        if (User == null) return string.Empty;
+
+        using var sha256 = SHA256.Create();
+        var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(User.Email));
+        return Convert.ToBase64String(bytes);
+    }
 
 }

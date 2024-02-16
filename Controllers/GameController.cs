@@ -116,7 +116,7 @@ public class GameController : Controller {
         if (Game.EndPage == name) {
             await _repository.WinGame(Game.Id, Player.Id);
             Console.WriteLine("Winning game");
-            await _eventSender.SendEvent(EventNames.WinGame, Game.Id, Player.Id);
+            await _eventSender.SendEvent(EventNames.WinGame, Game.Id);
         }
 
         return Ok();

@@ -1,6 +1,10 @@
+@model Player
 @{
     ViewBag.Title = "Win Game";
     Layout = "~/Views/Shared/_GameLayout.cshtml";
+
+    var game = Model.Game;
+    var winner = game.Players.First(p => p.IsWinner);
 }
 
-UwU
+<img src="https://gravatar.com/avatar/@winner.HashEmail()" alt="">

@@ -163,7 +163,7 @@ internal class DatabaseRepository : IRepository {
     public Task WinGame(string gameId, string userId) {
         var game = _database.Games.Find(gameId);
         if (game == null) return Task.CompletedTask;
-
+        _database.Players.Find(userId)!.IsWinner = true;
         game.State = GameState.Finished;
         game.FinishedAt = DateTime.Now;
         game.UpdatedAt = DateTime.Now;
