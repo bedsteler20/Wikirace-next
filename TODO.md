@@ -47,7 +47,7 @@
 - [ ] Add a way to kick players
 
 ## Legal Stuff
-- [ ] Add privacy policy
+- [x] Add privacy policy
 - [ ] Add terms of service
 - [ ] Add license
 - [ ] Add a way to report players
