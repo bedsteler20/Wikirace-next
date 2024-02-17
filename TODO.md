@@ -1,36 +1,61 @@
-- [x] Make join codes longer
-- [ ] Add host mode that makes the owner of the game not play
-- [x] Implement the play page
-- [x] Add win logic
-- [-] Add Win page
-- [ ] Record wins and losses
-- [ ] Add win losses ui
-- [x] Improve lobby styles
-- [x] Fix bug where page frame links don't work
-- [ ] Add a way to kick players
-- [x] Stop players from going to special pages
-- [ ] Update Create Game page
-- [ ] Add Client side page completion
-- [ ] Update styles
-- [x] Implement database cleanup
-- [x] Remove old anonymous players
-- [x] Remove old games
-- [ ] Add a way to report bugs
-- [ ] Add a way to report players
-- [x] Fix win game not redirecting to win page
-- [ ] Update styles for home page
-- [x] Add google analytics
-- [ ] Add social Sign in
-- [ ] Customize bootstrap
-- [x] Move scripts to partial component
-- [ ] Add privacy policy
-- [ ] Add terms of service
-- [ ] Add license
+# TODO's
+
+## Accounts
 - [x] Add gavatar
+- [ ] Record wins and losses
+- [ ] Add social Sign in
+
+## Analytics
+- [x] Add google analytics
+- [ ] Add a way to report bugs
+
+
+## Bugs
+- [ ] Fix SQLite in docker
 - [ ] Fix user not linking to player
+- [x] Fix win game not redirecting to win page
+- [x] Fix bug where page frame links don't work
+- [x] Stop players from going to special pages
+
+## Code Quality
 - [ ] Move all extensions to their own namespace
-- [x] Add docker support
+- [x] Move scripts to partial component
+
+
+## Dev Ops
 - [ ] Add CI/CD
 - [ ] Add tests
 - [ ] Integrate postgres
-- [ ] Fix SQLite in docker
+- [x] Add docker support
+
+## Database
+- [x] Make join codes longer
+- [x] Remove old games
+- [x] Remove old anonymous players
+- [x] Implement database cleanup
+
+## Features
+- [ ] Add Client side page completion
+- [ ] Add host mode that makes the owner of the game not play
+
+
+## Game Play
+- [x] Add win logic
+- [x] Implement the play page
+- [ ] Add Win page
+- [ ] Add win losses ui
+- [ ] Add a way to kick players
+
+## Legal Stuff
+- [ ] Add privacy policy
+- [ ] Add terms of service
+- [ ] Add license
+- [ ] Add a way to report players
+
+## Styles
+- [ ] Customize bootstrap
+- [ ] Update styles
+- [ ] Update styles for home page
+- [x] Improve lobby styles
+- [ ] Update Create Game page
+
