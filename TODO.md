@@ -49,7 +49,7 @@
 ## Legal Stuff
 - [x] Add privacy policy
 - [ ] Add terms of service
-- [ ] Add license
+- [x] Add license
 - [ ] Add a way to report players
 
 ## Styles
