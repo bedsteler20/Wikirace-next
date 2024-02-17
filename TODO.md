@@ -29,6 +29,8 @@
 - [x] Add gavatar
 - [ ] Fix user not linking to player
 - [ ] Move all extensions to their own namespace
-- [ ] Add docker support
+- [x] Add docker support
 - [ ] Add CI/CD
 - [ ] Add tests
+- [ ] Integrate postgres
+- [ ] Fix SQLite in docker
