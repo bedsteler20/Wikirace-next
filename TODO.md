@@ -12,9 +12,9 @@
 - [ ] Update Create Game page
 - [ ] Add Client side page completion
 - [ ] Update styles
-- [ ] Implement database cleanup
-- [ ] Remove old anonymous players
-- [ ] Remove old games
+- [x] Implement database cleanup
+- [x] Remove old anonymous players
+- [x] Remove old games
 - [ ] Add a way to report bugs
 - [ ] Add a way to report players
 - [x] Fix win game not redirecting to win page
@@ -28,3 +28,7 @@
 - [ ] Add license
 - [x] Add gavatar
 - [ ] Fix user not linking to player
+- [ ] Move all extensions to their own namespace
+- [ ] Add docker support
+- [ ] Add CI/CD
+- [ ] Add tests
