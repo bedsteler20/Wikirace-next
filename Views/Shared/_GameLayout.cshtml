@@ -6,25 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/game_layout.css">
     @await RenderSectionAsync("Styles", required: false)
     @await RenderSectionAsync("Head", required: false)
 </head>
 
 <body hx-ext="redirect">
-    <div class="h-100">
-        <nav class="navbar navbar-light bg-light">
-            <div class="">
-                <ul class="navbar-nav">
-                    @RenderSection("NavbarStart", required: false)
-                </ul>
-            </div>
-            <div class=" justify-content-end">
-                <ul class="navbar-nav">
-                    @RenderSection("NavbarEnd", required: false)
-                </ul>
-            </div>
-        </nav>
-
+    <div class="h-100 root">
         @RenderBody()
     </div>
 

@@ -7,4 +7,36 @@
     var winner = game.Players.First(p => p.IsWinner);
 }
 
-<img src="https://gravatar.com/avatar/@winner.HashEmail()" alt="">
+@section Styles {
+    <link href="~/css/win.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/lib/canvas-confetti/dist/confetti.browser.min.js"></script>
+
+    <script>
+        confetti({
+            particleCount: 150,
+        });
+    </script>
+}
+
+
+<div class="text-center mt-5">
+    <img src="~/profile_pic.png" class="profile-pic">
+    <h1>Player @winner.Username Wins!</h1>
+
+</div>
+
+<div class="d-flex justify-content-center gap-4">
+
+    <div class="text-center mt-5">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">View Profile</a>
+    </div>
+
+
+    <div class="text-center mt-5">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Return to Lobby</a>
+    </div>
+
+</div>

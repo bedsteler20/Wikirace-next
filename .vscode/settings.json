@@ -12,6 +12,7 @@
         "wikibase",
         "Wikirace"
     ],
+    "razor.format.enable": true,
     "sqltools.connections": [
         {
             "previewLimit": 50,

@@ -16,11 +16,12 @@
 - [x] Fix win game not redirecting to win page
 - [x] Fix bug where page frame links don't work
 - [x] Stop players from going to special pages
+- [] Fix di issue with clean up service
 
 ## Code Quality
 - [ ] Move all extensions to their own namespace
 - [x] Move scripts to partial component
-
+- [ ] Libman 
 
 ## Dev Ops
 - [ ] Add CI/CD
