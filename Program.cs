@@ -19,6 +19,8 @@ builder.Services.AddMvcCore(options => {
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=wikirace.db"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDatabaseRepository();
+
+builder.Services.AddDbCleanupService();
 // builder.Services.AddDbCleanupService(builder.Configuration);
 // Email
 // builder.Services.AddTransient<IEmailSender, EmailSenderService>();

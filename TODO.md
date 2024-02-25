@@ -16,9 +16,10 @@
 - [x] Fix win game not redirecting to win page
 - [x] Fix bug where page frame links don't work
 - [x] Stop players from going to special pages
-- [ ] Fix di issue with clean up service
+- [x] Fix di issue with clean up service
 - [ ] Fix join qr code not working
-- [ ] fix avatar on win page
+- [ ] fix avatar on win 
+
 ## Code Quality
 - [ ] Move all extensions to their own namespace
 - [x] Move scripts to partial component
