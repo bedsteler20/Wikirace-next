@@ -41,24 +41,7 @@
 
 </div>
 
-<iframe class="overflow-y-hidden" src="/game/@Model.Game.Id/pageframe"></iframe>
+<div class="d-flex align-items-center w-100 flex-grow-1 justify-content-center ">
+    <iframe src="/game/@Model.Game.Id/pageframe"></iframe>
 
-
-@section Styles {
-    <style>
-        body {
-            height: 100vh;
-            max-height: 100vh;
-        }
-
-        iframe {
-            height: calc(100vh - 63.6px);
-            width: 100%;
-            border: none;
-        }
-
-        .hidden {
-            display: none;
-        }
-    </style>
-}
+</div>

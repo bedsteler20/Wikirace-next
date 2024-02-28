@@ -28,8 +28,13 @@ public class SessionController : Controller {
     }
 
     [HttpGet]
-    public IActionResult Join() {
-        return View();
+    public IActionResult Join([FromQuery] string? gameId = null) {
+        if (gameId != null) {
+            return View(new JoinGameModel { JoinCode = gameId, HideJoinCode = true });
+        }
+        return View(new JoinGameModel {
+            HideJoinCode = false
+        });
     }
 
     [HttpPost]
@@ -78,5 +83,8 @@ public class SessionController : Controller {
         return RedirectToAction("Lobby", "Game", new { gameId = game.Id });
     }
 
-
+    [HttpGet]
+    public async Task<IActionResult> Completions([FromQuery] string? q, [FromServices] WikipediaClient wikipediaClient) {
+        return Json(await wikipediaClient.SearchAsync(q ?? ""));
+    }
 }

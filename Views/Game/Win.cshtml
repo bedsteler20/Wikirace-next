@@ -6,6 +6,7 @@
     var game = Model.Game;
     var winner = game.Players.First(p => p.IsWinner);
 }
+@inject AppDbContext dbContext
 
 @section Styles {
     <link href="~/css/win.css" rel="stylesheet" />
@@ -23,7 +24,7 @@
 
 
 <div class="text-center mt-5">
-    <img src="~/profile_pic.png" class="profile-pic">
+    <img src="@winner.GetUser(dbContext).AvatarUrl" class="profile-pic">
     <h1>Player @winner.Username Wins!</h1>
 
 </div>

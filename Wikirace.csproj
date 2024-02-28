@@ -19,6 +19,7 @@
     <Target Name="CompileTypeScript" Condition="'$(BuildingProject)' != 'false'" DependsOnTargets="$(CompileTypeScriptDependsOn)" Inputs="@(TypeScriptCompile)" Outputs="@(GeneratedJavascript)" />
 
     <ItemGroup>
+        <PackageReference Include="GravatarSharp.Core" Version="1.0.1.2" />
         <PackageReference Include="Htmx" Version="1.7.0" />
         <PackageReference Include="Htmx.TagHelpers" Version="1.7.0" />
         <PackageReference Include="Lib.AspNetCore.ServerSentEvents" Version="8.3.1" />

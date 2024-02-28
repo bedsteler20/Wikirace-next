@@ -1,0 +1,28 @@
+@model JoinGameModel
+@{
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
+    ViewData["Title"] = "Join Game";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/ocean.css" />
+
+}
+
+<div class="text-center pt-5 mt-5">
+    <h1 class="display-4">Join Game</h1>
+    <p class="lead">Code: </p>
+    <form method="post">
+        <input asp-for="DisplayName" class="wikirace-input-text" type="text" id="gameCode" name="gameCode"
+            placeholder="Enter game code" required>
+        <br>
+        <button type="submit" class="btn btn-primary">Join Game</button>
+    </form>
+
+</div>
+
+
+<div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>

@@ -1,38 +1,53 @@
 @model CreateGameModel
 @{
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
     ViewData["Title"] = "Create Game";
 }
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="StartPage"></label>
-        <input asp-for="StartPage" class="form-control" />
-        <span asp-validation-for="StartPage" class="text-danger"></span>
-    </div>
+@section Scripts {
+    <script src="~/js/dist/CompletionBox.js"></script>
+}
 
-    <div class="form-group">
-        <label asp-for="EndPage"></label>
-        <input asp-for="EndPage" class="form-control" />
-        <span asp-validation-for="EndPage" class="text-danger"></span>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="MaxPlayers"></label>
-        <input asp-for="MaxPlayers" class="form-control" value="20" />
-        <span asp-validation-for="MaxPlayers" class="text-danger"></span>
-    </div>
+<div class="d-flex flex-column align-items-center pt-5">
+    <div class="d-flex flex-row align-items-center mt-5 flex-fill home-panel bg-black m-3 rounded-10">
+        <div class="d-flex flex-column align-items-center p-4 floating-card text-bg-info rounded-4 gap-2 w-100">
+            <form class="text-center" asp-action="Create" method="post">
 
-    <div class="form-group">
-        <label asp-for="GameType"></label>
-        <select asp-for="GameType" asp-items="Html.GetEnumSelectList<GameType>()" class="form-control"></select>
-        <span asp-validation-for="GameType" class="text-danger"></span>
-    </div>
+                <div class="form-floating">
+                    <label class="text-gray" asp-for="StartPage">asd</label>
+                    <input placeholder="asd" autocomplete="off" id="start-page" asp-for="StartPage"
+                        class="form-control" />
+                </div>
 
-    <div class="form-group">
-        <label asp-for="DisplayName"></label>
-        <input asp-for="DisplayName" class="form-control" />
-        <span asp-validation-for="DisplayName" class="text-danger"></span>
-    </div>
+                <div class="form-group">
+                    <label asp-for="EndPage"></label>
+                    <input autocomplete="off" id="end-page" asp-for="EndPage" class="form-control" />
+                    <span asp-validation-for="EndPage" class="text-danger"></span>
+                    <wikirace-complete for="end-page"></wikirace-complete>
+                </div>
 
-    <button type="submit" class="btn btn-primary">Create</button>
-</form>
+                <div class="form-group">
+                    <label asp-for="MaxPlayers"></label>
+                    <input asp-for="MaxPlayers" class="form-control" value="20" />
+                    <span asp-validation-for="MaxPlayers" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="GameType"></label>
+                    <select asp-for="GameType" asp-items="Html.GetEnumSelectList<GameType>()"
+                        class="form-control"></select>
+                    <span asp-validation-for="GameType" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DisplayName"></label>
+                    <input asp-for="DisplayName" class="form-control" />
+                    <span asp-validation-for="DisplayName" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -168,7 +168,7 @@ internal class DatabaseRepository : IRepository {
         game.State = GameState.Finished;
         game.FinishedAt = DateTime.Now;
         game.UpdatedAt = DateTime.Now;
-        player.User.Wins++;
+        player.GetUser(_database).Wins++;
         return _database.SaveChangesAsync();
     }
 }

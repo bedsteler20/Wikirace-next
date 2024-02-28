@@ -12,7 +12,7 @@
 
 ## Bugs
 - [ ] Fix SQLite in docker
-- [ ] Fix user not linking to player
+- [x] Fix user not linking to player
 - [x] Fix win game not redirecting to win page
 - [x] Fix bug where page frame links don't work
 - [x] Stop players from going to special pages

@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography;
 using System.Text;
-
+using Wikirace.Utils;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System.Data;
 namespace Wikirace.Data;
 
 public class Player {
@@ -45,12 +47,10 @@ public class Player {
     [ForeignKey("GameId")]
     public Game Game { get; set; }
 
-    public string HashEmail() {
-        if (User == null) return string.Empty;
 
-        using var sha256 = SHA256.Create();
-        var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(User.Email));
-        return Convert.ToBase64String(bytes);
+    public AppUser GetUser(AppDbContext context) {
+        return context.Users.Where(p => p.Id == UserId).First();
     }
+
 
 }

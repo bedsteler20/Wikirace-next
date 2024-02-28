@@ -7,6 +7,9 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/game_layout.css">
+    <link rel="stylesheet" href="~/css/shared.css" asp-append-version="true" />
+    <link href="~/css/ocean.css" rel="stylesheet" />
+
     @await RenderSectionAsync("Styles", required: false)
     @await RenderSectionAsync("Head", required: false)
 </head>
@@ -17,6 +20,10 @@
     </div>
 
 
+    <div class="ocean">
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
     <partial name="_Scripts" />
     @await RenderSectionAsync("Scripts", required: false)
 </body>

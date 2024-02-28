@@ -1,20 +1,38 @@
 @model JoinGameModel
 @{
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
     ViewData["Title"] = "Join Game";
 }
 
-<form asp-action="Join" method="post">
-    <div class="form-group">
-        <label asp-for="JoinCode"></label>
-        <input asp-for="JoinCode" class="form-control" />
-        <span asp-validation-for="JoinCode" class="text-danger"></span>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="DisplayName"></label>
-        <input asp-for="DisplayName" class="form-control" />
-        <span asp-validation-for="DisplayName" class="text-danger"></span>
-    </div>
+<div class="d-flex flex-column align-items-center pt-5">
+    <div class="d-flex flex-row align-items-center mt-5 flex-fill home-panel bg-black m-3 rounded-10">
+        <div class="d-flex flex-column align-items-center p-4 floating-card text-bg-info rounded-4 gap-2 w-100">
+            <form class="text-center f" asp-action="Join" method="post">
+                <h1 class="display-4 pb-4">Join Game</h1>
+                @if (!Model.HideJoinCode)
+                {
+                    <div class="form-group">
+                        <input placeholder="Game Code" autocomplete="off" class="form-control" asp-for="JoinCode"
+                            class="form-control" />
+                        <br>
+                        <span asp-validation-for="JoinCode" class="text-danger"></span>
+                    </div>
+                }
+                else
+                {
+                    <input asp-for="JoinCode" type="hidden" />
+                }
 
-    <button type="submit" class="btn btn-primary">Join</button>
-</form>
+                <div class="form-group">
+                    <input placeholder="Display Name" autocomplete="off" class="form-control"
+                        asp-for="DisplayName" class="form-control" />
+                    <br>
+                    <span asp-validation-for="DisplayName" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-big">Join</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -12,4 +12,6 @@ public class JoinGameModel {
     [Display(Name = "Display Name")]
     public string DisplayName { get; set; }
 
+    public bool HideJoinCode { get; set; } = false;
+
 }

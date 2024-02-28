@@ -1,9 +1,10 @@
 ﻿@{
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
     ViewData["Title"] = "Home Page";
 }
 
-<div class="d-flex flex-column align-items-center">
-    <div class="d-flex flex-row align-items-center flex-fill">
+<div class="d-flex flex-column align-items-center pt-5">
+    <div class="d-flex flex-row align-items-center mt-5 flex-fill home-panel bg-black m-3 rounded-10">
         <div class="d-flex flex-column align-items-center p-4 floating-card text-bg-info rounded-4 gap-2">
             <img src="~/icons/wikirace.svg"></img>
             <h1 class="display-4 pb-4">Wikirace</h1>
@@ -11,7 +12,7 @@
             <div style="display: contents;">
                 <div class="d-flex flex-row gap-2 w-75 pb-4 pt-2">
                     <a asp-controller="Session" asp-action="Join" class="btn btn-primary w-100">Join Game</a>
-                    <a asp-controller="Session" asp-action="Create" class="btn btn-warning w-100">Create Game</a>
+                    <a asp-controller="Session" asp-action="Create" class="btn btn-secondary w-100">Create Game</a>
                 </div>
             </div>
             <h3 class="text-md">How to Play</h3>

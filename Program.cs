@@ -7,6 +7,7 @@ using Wikirace.Security;
 using Wikirace.Data;
 using Wikirace.Repository;
 using Wikirace.Services;
+using Wikirace.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data S
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDatabaseRepository();
 
-builder.Services.AddDbCleanupService();
+// builder.Services.AddDbCleanupService();
 // builder.Services.AddDbCleanupService(builder.Configuration);
 // Email
 // builder.Services.AddTransient<IEmailSender, EmailSenderService>();
@@ -56,6 +57,8 @@ builder.Services.AddRouting(options => {
 // Game state
 builder.Services.AddServerSentEvents();
 builder.Services.AddSingleton<ClientEventsService>();
+
+builder.Services.AddWikipediaRepo();
 
 var app = builder.Build();
 

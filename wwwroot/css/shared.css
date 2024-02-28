@@ -1,0 +1,87 @@
+.bg-black {
+    background-color: #313244 !important;
+    color: #ffff;
+}
+
+.home-panel {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.rounded-10 {
+    border-radius: 5%;
+}
+
+.btn-primary {
+    background-color: #89b4fa;
+    border-color: #89b4fa;
+    color: #45475a;
+}
+
+.btn-primary:hover {
+    background-color: #6f9cfb;
+}
+
+.btn-secondary {
+    background-color: #f9e2af;
+    border-color: #f9e2af;
+    color: #45475a;
+}
+
+.btn-secondary:hover {
+    background-color: #f9d77f;
+}
+
+.btn-danger {
+    background-color: #f38ba8;
+    border-color: #f38ba8;
+    color: #45475a;
+}
+
+.btn-danger:hover {
+    background-color: #f36b8a;
+}
+
+iframe {
+    height: calc(100vh - 100px);
+    width: 10000000px;
+    border: none;
+    background-color: white;
+    color: white;
+    max-width: 10000px;
+    min-width: 700px;
+    margin-top: 10px;
+    margin-left: 10em;
+    margin-right: 10em;
+    border-radius: 1em;
+    overflow-y: hidden;
+}
+
+@media (max-width: 768px) {
+    iframe {
+        min-width: calc(100vw - 20px);
+        border-radius: 0.5em;
+    }
+}
+
+.left-corner-box {
+    background-color: #313244 !important;
+    margin-top: 0;
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 1em;
+    border-bottom-left-radius: 1em;
+}
+
+.btn-big {
+    font-size: 1.2em;
+    width: 100%;
+    border-radius: 1em;
+}
+
+.text-gray {
+    color: #45475a;
+}
