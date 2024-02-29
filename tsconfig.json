@@ -1,0 +1,11 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "None",
+        "lib": ["DOM", "ES2020"],
+        "outDir": "./wwwroot/js/dist",
+        "sourceMap": true
+    },
+    "include": ["./JavaScript/**/*.ts"]
+}

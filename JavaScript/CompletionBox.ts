@@ -1,4 +1,3 @@
-
 class WikipediaCompletionBox extends HTMLElement {
     private _visible: boolean;
     private _items: CompletionItem[] = [];

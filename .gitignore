@@ -5,3 +5,5 @@
 **/bin
 *.session.sql
 wwwroot/js/dist
+Properties/node_modules
+node_modules
