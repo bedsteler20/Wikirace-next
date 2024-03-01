@@ -15,6 +15,7 @@ class WikipediaCompletionBox extends HTMLElement {
             .root {
                 visibility: ${this._visible ? "visible" : "hidden"};
                 position: absolute;
+                margin-top: 8px;
                 background-color: white;
                 width: 500px;
                 border: 1px solid black;
@@ -48,10 +49,11 @@ class WikipediaCompletionBox extends HTMLElement {
     render() {
         this.shadowRoot!.innerHTML = `
             <style>${this.renderStyles()}</style>
-            <div class="root">
+            <link rel="stylesheet" href="/css/index.css">
+            <div class="root w-72 bg-surface1 rounded-2xl text-left">
                 ${this._items.map((item) => `
                     <div class="item">
-                        <img class="image" src="${item.imageUrl ?? "/nopage.svg"}" />
+                        <img class="image rounded" src="${item.imageUrl ?? "/nopage.svg"}" />
                         <div>
                             <div class="title">${item.title}</div>
                             <div class="description">${item.description ?? ""}</div>

@@ -4,6 +4,6 @@
 **/obj
 **/bin
 *.session.sql
-wwwroot/js/dist
-Properties/node_modules
+src/wwwroot/js/dist
+src/wwwroot/css/index.css
 node_modules

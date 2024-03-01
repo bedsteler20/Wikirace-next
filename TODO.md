@@ -18,7 +18,7 @@
 - [x] Stop players from going to special pages
 - [x] Fix di issue with clean up service
 - [ ] Fix join qr code not working
-- [ ] fix avatar on win 
+- [x] fix avatar on win 
 
 ## Code Quality
 - [ ] Move all extensions to their own namespace

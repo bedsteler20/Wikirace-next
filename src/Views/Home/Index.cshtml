@@ -3,23 +3,19 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="d-flex flex-column align-items-center pt-5">
-    <div class="d-flex flex-row align-items-center mt-5 flex-fill home-panel bg-black m-3 rounded-10">
-        <div class="d-flex flex-column align-items-center p-4 floating-card text-bg-info rounded-4 gap-2">
-            <img src="~/icons/wikirace.svg"></img>
-            <h1 class="display-4 pb-4">Wikirace</h1>
+<div class="container mx-auto bg-surface0 max-w-lg rounded-2xl m-10">
+    <div class="p-8 text-text flex items-center flex-grow flex-col gap-2">
+        <img class="max-w-64" src="~/icons/wikirace.svg"></img>
+        <h1 class="text-5xl">Wikirace</h1>
 
-            <div style="display: contents;">
-                <div class="d-flex flex-row gap-2 w-75 pb-4 pt-2">
-                    <a asp-controller="Session" asp-action="Join" class="btn btn-primary w-100">Join Game</a>
-                    <a asp-controller="Session" asp-action="Create" class="btn btn-secondary w-100">Create Game</a>
-                </div>
-            </div>
-            <h3 class="text-md">How to Play</h3>
-            <p class="lead text-center">
-                Welcome to Wikirace! The goal of the game is to get from one Wikipedia page to another using
-                only the links on the page. The player who gets to the destination page in the fewest clicks wins!
-            </p>
+        <div class="flex w-full justify-center gap-4 text-center max-w-xs">
+            <a class="hover-pop btn-blue w-1/2" asp-controller="Session" asp-action="Join">Join Game</a>
+            <a class="hover-pop btn-mauve w-1/2" asp-controller="Session" asp-action="Create">Create Game</a>
         </div>
+        <h3 class="text-xl text-subtext0">How to Play</h3>
+        <p class="text-subtext0 text-center">
+            Welcome to Wikirace! The goal of the game is to get from one Wikipedia page to another using
+            only the links on the page. The player who gets to the destination page in the fewest clicks wins!
+        </p>
     </div>
 </div>

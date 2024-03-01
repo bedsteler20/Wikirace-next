@@ -52,5 +52,4 @@ public class Player {
         return context.Users.Where(p => p.Id == UserId).First();
     }
 
-
 }

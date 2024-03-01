@@ -1,50 +1,51 @@
 @model Player
 @{
     ViewBag.Title = "Lobby";
+    ViewBag.CustomRightHeader = true;
     Layout = "~/Views/Shared/_GameLayout.cshtml";
+
 }
 
-
-<div class="left-corner-box">
+@section CustomRightHeader
+{
     @if (Model.IsOwner)
     {
-        <button class="nav-link btn btn-primary ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click" hx-post
-            hx-action="Start" hx-controller="Game" hx-route-gameId="@Model.Game.Id">Start</button>
-    }
-
-    @if (Model.IsOwner)
-    {
-        <button class="nav-link btn btn-danger ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click" hx-post
-            hx-confirm="Are you sure you want to end the game" hx-action="End" hx-controller="Game"
-            hx-route-gameId="@Model.Game.Id">End</button>
+        <button class="btn-blue hover-pop" hx-trigger="click" hx-post hx-action="Start" hx-controller="Game"
+    hx-route-gameId="@Model.Game.Id">Start</button>
+        <button class="btn-red hover-pop" hx-trigger="click" hx-post hx-confirm="Are you sure you want to end the game"
+    hx-action="End" hx-controller="Game" hx-route-gameId="@Model.Game.Id">End</button>
     }
     else
     {
-        <button class="nav-link btn btn-danger ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click" hx-post
-            hx-action="Leave" hx-confirm="Are you sure you want to Leave the game" hx-controller="Game"
-            hx-route-gameId="@Model.Game.Id">Leave</button>
+        <button class="btn-red hover-pop" hx-trigger="click" hx-post hx-action="Leave"
+    hx-confirm="Are you sure you want to Leave the game" hx-controller="Game"
+    hx-route-gameId="@Model.Game.Id">Leave</button>
     }
-</div>
+    }
+
+    <div class="left-corner-box">
+
+    </div>
 
 
 
-<div class="d-flex justify-content-center align-items-center pt-5">
-    <div class="text-light lobby-code-box d-flex mt-5 bg-black">
-        <div class="flex-grow-1 d-flex flex-column">
-            <h5>Game Code:</h5>
-            <h1>@Model.Game.JoinCode.ToUpper()</h1>
+    <div class="container mx-auto bg-surface0 max-w-lg rounded-2xl m-10">
+        <div class="flex p-3">
+            <div class="flex-grow flex flex-col text-text">
+                <h5 class="text-xl">Game Code:</h5>
+                <h1 class="text-4xl">@Model.Game.JoinCode.ToUpper()</h1>
+            </div>
+            <img class="lobby-qr-code w-4/12 m-2 p-1 bg-white rounded-lg" src="~/qr-placeholder.png" alt="Join QR Code">
         </div>
-        <img class="lobby-qr-code m-2 p-1 bg-white rounded-10" src="~/qr-placeholder.png" alt="Join QR Code">
-    </div>
-</div>
-
-
-<div hx-sse="connect:/game/@Model.Game.Id/state">
-    <div class="d-flex flex-wrap gap-2 justify-content-center" hx-trigger="sse:@EventNames.RefreshLobby" hx-get
-        hx-action="Lobby" hx-controller="Game" hx-route-gameId="@Model.Game.Id" hx-swap="innerHTML">
-        <partial name="_PlayerList" model="@Model" />
     </div>
 
-    @* State Redirects *@
-    <div hx-trigger="sse:@EventNames.EndGame" hx-redirect hx-alert="The game has ended" hx-get="/"></div>
-</div>
+
+    <div hx-sse="connect:/game/@Model.Game.Id/state">
+        <div class="lobby-container" hx-trigger="sse:@EventNames.RefreshLobby" hx-get
+            hx-action="Lobby" hx-controller="Game" hx-route-gameId="@Model.Game.Id" hx-swap="innerHTML">
+            <partial name="_PlayerList" model="@Model" />
+        </div>
+
+        @* State Redirects *@
+        <div hx-trigger="sse:@EventNames.EndGame" hx-redirect hx-alert="The game has ended" hx-get="/"></div>
+    </div>

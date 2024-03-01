@@ -4,8 +4,8 @@
         "target": "ES6",
         "module": "None",
         "lib": ["DOM", "ES2020"],
-        "outDir": "./wwwroot/js/dist",
+        "outDir": "./src/wwwroot/js/dist",
         "sourceMap": true
     },
-    "include": ["./JavaScript/**/*.ts"]
+    "include": ["./src/JavaScript/**/*.ts"]
 }

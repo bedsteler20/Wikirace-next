@@ -5,21 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/css/game_layout.css">
-    <link rel="stylesheet" href="~/css/shared.css" asp-append-version="true" />
-    <link href="~/css/ocean.css" rel="stylesheet" />
+    <link href="~/css/index.css" rel="stylesheet" asp-append-version="true" />
 
     @await RenderSectionAsync("Styles", required: false)
     @await RenderSectionAsync("Head", required: false)
 </head>
 
-<body hx-ext="redirect">
+<body hx-ext="redirect" class="ocean-bg">
     <div class="h-100 root">
+        <div class="w-screen">
+            <div class="w-max"></div>
+            <div class="w-max"></div>
+
+            <div class="flex place-content-end">
+                <div class="bg-surface0 text-text p-3 pl-5 rounded-bl-3xl gap-3 flex">
+                    @if (ViewBag.CustomRightHeader != null)
+                    {
+                        @RenderSection("CustomRightHeader", required: false)
+                    }
+                    else
+                    {
+                        <partial name="_LoginPartial" />
+                    }
+                </div>
+            </div>
+
+        </div>
         @RenderBody()
     </div>
 
-
+    <div class="mobile-bg"></div>
     <div class="ocean">
         <div class="wave"></div>
         <div class="wave"></div>

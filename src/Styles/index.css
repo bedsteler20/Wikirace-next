@@ -1,0 +1,40 @@
+@import "./ocean.css";
+@import "./lobby.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .hover-pop {
+        @apply transition-all duration-300 ease-in-out;
+        @apply hover:shadow-md hover:scale-105;
+    }
+}
+
+@layer components {
+    .btn-blue {
+        @apply bg-blue  text-white font-bold py-2 px-4 rounded-2xl border-none;
+    }
+
+    .btn-green {
+        @apply bg-green text-white font-bold py-2 px-4 rounded-2xl border-none;
+    }
+
+    .btn-mauve {
+        @apply bg-mauve text-white font-bold py-2 px-4 rounded-2xl border-none;
+    }
+
+    .btn-gray {
+        @apply bg-surface1 text-white font-bold py-2 px-4 rounded-2xl border-none;
+    }
+
+    .btn-red {
+        @apply bg-red text-white font-bold py-2 px-4 rounded-2xl border-none;
+    }
+
+    .input {
+        @apply border-2 bg-white border-surface1 rounded-lg p-2 text-base;
+        @apply focus:outline-mauve focus:border-2 focus:border-pink;
+        @apply transition-all duration-300 ease-in-out;
+    }
+}

@@ -1,16 +1,8 @@
 {
-    "name": "wikirace-next",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "build:prod": "dotnet  "
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
     "devDependencies": {
+        "@catppuccin/tailwindcss": "^0.1.6",
         "cross-env": "^7.0.3",
+        "postcss-import": "^16.0.1",
         "tailwindcss": "^3.4.1"
     }
 }

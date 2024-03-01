@@ -9,45 +9,33 @@
 }
 
 
-<div class="d-flex flex-column align-items-center pt-5">
-    <div class="d-flex flex-row align-items-center mt-5 flex-fill home-panel bg-black m-3 rounded-10">
-        <div class="d-flex flex-column align-items-center p-4 floating-card text-bg-info rounded-4 gap-2 w-100">
-            <form class="text-center" asp-action="Create" method="post">
+<div class="container mx-auto bg-surface0 max-w-lg rounded-2xl m-10">
+    <div class="p-8 text-text">
+        <div class="text-3xl pb-4 text-center">Create Game</div>
+        <form class="text-center flex items-center flex-grow flex-col gap-2" asp-action="Create" method="post">
+            <div class="w-72">
+                <input placeholder="Start Page" autocomplete="off" id="start-page" asp-for="StartPage"
+                    class="input w-full" />
+                <wikirace-complete for="start-page"></wikirace-complete>
+            </div>
+            <div class="w-72">
+                <input placeholder="End Page" autocomplete="off" id="end-page" asp-for="EndPage" class="input w-full" />
+                <wikirace-complete for="end-page"></wikirace-complete>
+            </div>
 
-                <div class="form-floating">
-                    <label class="text-gray" asp-for="StartPage">asd</label>
-                    <input placeholder="asd" autocomplete="off" id="start-page" asp-for="StartPage"
-                        class="form-control" />
-                </div>
+            <div class="w-72">
+                <input asp-for="MaxPlayers" class="input w-full" value="20" />
+            </div>
 
-                <div class="form-group">
-                    <label asp-for="EndPage"></label>
-                    <input autocomplete="off" id="end-page" asp-for="EndPage" class="form-control" />
-                    <span asp-validation-for="EndPage" class="text-danger"></span>
-                    <wikirace-complete for="end-page"></wikirace-complete>
-                </div>
+            <div class="w-72">
+                <select asp-for="GameType" asp-items="Html.GetEnumSelectList<GameType>()" class="input w-full"></select>
+            </div>
 
-                <div class="form-group">
-                    <label asp-for="MaxPlayers"></label>
-                    <input asp-for="MaxPlayers" class="form-control" value="20" />
-                    <span asp-validation-for="MaxPlayers" class="text-danger"></span>
-                </div>
+            <div class="w-72">
+                <input asp-for="DisplayName" placeholder="Display Name" class="input w-full" />
+            </div>
 
-                <div class="form-group">
-                    <label asp-for="GameType"></label>
-                    <select asp-for="GameType" asp-items="Html.GetEnumSelectList<GameType>()"
-                        class="form-control"></select>
-                    <span asp-validation-for="GameType" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="DisplayName"></label>
-                    <input asp-for="DisplayName" class="form-control" />
-                    <span asp-validation-for="DisplayName" class="text-danger"></span>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Create</button>
-            </form>
-        </div>
+            <button type="submit" class="btn-mauve mt-3 pl-5 pr-5">Create</button>
+        </form>
     </div>
 </div>

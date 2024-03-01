@@ -31,10 +31,10 @@ public class WikipediaClient {
             .AddQuery("ppprop", "displaytitle")
             .AddQuery("piprop", "thumbnail")
             .AddQuery("pithumbsize", "75")
-            .AddQuery("pilimit", "6")
+            .AddQuery("pilimit", "4")
             .AddQuery("gpssearch", query)
             .AddQuery("gpsnamespace", "0")
-            .AddQuery("gpslimit", "6");
+            .AddQuery("gpslimit", "4");
 
         var response = await _httpClient.GetAsync(url);
         var json = await response.Content.ReadAsStringAsync();

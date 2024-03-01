@@ -1,0 +1,18 @@
+.lobby-player {
+    @apply text-text p-2 text-2xl font-bold;
+}
+
+.lobby-container {
+    @apply pl-10 pr-10;
+}
+
+@media (min-width: 32rem) {
+    .lobby-player {
+        @apply text-text bg-surface1 p-2 text-2xl hover-pop font-bold rounded-lg;
+        @apply pr-5 pl-5;
+        opacity: 0.8;
+    }
+    .lobby-container {
+        @apply flex flex-col items-center justify-center;
+    }
+}

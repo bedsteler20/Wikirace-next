@@ -21,7 +21,7 @@
             "name": "Wikirace"
         }
     ],
-    "workbench.iconTheme": "vscode-icon-theme",
+    "workbench.iconTheme": "catppuccin-perfect-mocha",
 
     "files.associations": {
         "libman.json": "jsonc",

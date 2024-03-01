@@ -5,34 +5,27 @@
 }
 
 
-<div class="d-flex flex-column align-items-center pt-5">
-    <div class="d-flex flex-row align-items-center mt-5 flex-fill home-panel bg-black m-3 rounded-10">
-        <div class="d-flex flex-column align-items-center p-4 floating-card text-bg-info rounded-4 gap-2 w-100">
-            <form class="text-center f" asp-action="Join" method="post">
-                <h1 class="display-4 pb-4">Join Game</h1>
-                @if (!Model.HideJoinCode)
-                {
-                    <div class="form-group">
-                        <input placeholder="Game Code" autocomplete="off" class="form-control" asp-for="JoinCode"
-                            class="form-control" />
-                        <br>
-                        <span asp-validation-for="JoinCode" class="text-danger"></span>
-                    </div>
-                }
-                else
-                {
-                    <input asp-for="JoinCode" type="hidden" />
-                }
-
-                <div class="form-group">
-                    <input placeholder="Display Name" autocomplete="off" class="form-control"
-                        asp-for="DisplayName" class="form-control" />
-                    <br>
-                    <span asp-validation-for="DisplayName" class="text-danger"></span>
+<div class="container mx-auto bg-surface0 max-w-lg rounded-2xl m-10">
+    <div class="p-8 text-text flex items-center flex-grow flex-col">
+        <form class="text-center" asp-action="Join" method="post">
+            <h1 class="display-4 pb-8 text-4xl">Join Game</h1>
+            @if (!Model.HideJoinCode)
+            {
+                <div class="mb-3">
+                    <input placeholder="Game Code" autocomplete="off" class="input" asp-for="JoinCode" />
                 </div>
+            }
+            else
+            {
+                <input autocomplete="off" asp-for="JoinCode" type="hidden" />
+            }
 
-                <button type="submit" class="btn btn-primary btn-big">Join</button>
-            </form>
-        </div>
+            <div class="mb-3">
+                <input placeholder="Display Name" autocomplete="off" class="input" asp-for="DisplayName"
+                    class="input" />
+            </div>
+
+            <button type="submit" class="btn-blue pr-8 pl-8">Join</button>
+        </form>
     </div>
 </div>

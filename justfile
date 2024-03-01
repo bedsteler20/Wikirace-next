@@ -9,18 +9,22 @@ clean:
     dotnet clean
     rm -rf node_modules
 
+build-css:
+    tailwindcss -i ./src/Styles/index.css -o ./src/wwwroot/css/index.css
 
-[unix]
-toolchain:
-    @echo "Checking toolchain"
-    @command -v dotnet >/dev/null 2>&1 || { just install_toolchain; exit 0; } 
-    @command -v node >/dev/null 2>&1 || { just install_toolchain; exit 0; }
-    @command -v npm >/dev/null 2>&1 || { just install_toolchain; exit 0; }
-    @echo "All tools are installed"
+build-ts:
+    tsc
+
+build-js:
+    @just build-ts
+    @just build-css
+
+build-server:
+    dotnet build
 
 build:
-    tsc
-    dotnet build
+    @just build-js
+    @just build-server
 
 publish:
     @just restore
@@ -28,7 +32,6 @@ publish:
     dotnet publish -c Release
 
 restore:
-    @just toolchain
     @echo 'Resotring project'
     dotnet tool restore
     dotnet restore
@@ -37,25 +40,21 @@ restore:
 
 watch:
     #!/usr/bin/env bash
-    tsc --watch &
-    dotnet watch
+    tsc -w --preserveWatchOutput  &
+    tailwindcss -i ./src/Styles/index.css -o ./src/wwwroot/css/index.css --watch &
+    dotnet watch --project src/Wikirace.csproj
 
-[linux]
-[private]
-[confirm("Some tools are not installed do you want to install them? [Y/n]:")]
-install_toolchain:
-    #!/usr/bin/env bash
-    source /etc/os-release
-    if [[ "$ID" == "fedora" ]]; then
-        echo "On fedora using dnf"
-        pkexec dnf install dotnet-sdk-8.0 nodejs
-    else
-        echo "Toolchain installation is not suported on $ID"
-        exit 1
-    fi
+
 
 run:
     dotnet run
 
 kill-server:
     pkill Wikirace
+
+migrate name:
+    dotnet ef migrations add --project=src {{uppercamelcase(name)}} -o src/Data/Migrations
+    @just update-db
+
+update-db:
+    dotnet ef database update --project=src
