@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .hover-pop {
+        @apply transition-all duration-300 ease-in-out;
+        @apply hover:shadow-md hover:scale-105;
+    }
+}
+.btn-primary {
+    @apply bg-mauve;
+    @apply text-white;
+    @apply font-bold;
+    @apply hover:bg-mauve;
+    @apply hover-pop;
+    @apply border-mauve;
+    @apply hover:border-mauve;
+}
+
+h1 {
+    @apply text-5xl;
+    @apply font-bold;
+    @apply text-text;
+}
+
+h2 {
+    @apply text-4xl;
+    @apply font-bold;
+    @apply text-text;
+}
+
+h3 {
+    @apply text-3xl;
+    @apply font-bold;
+    @apply text-text;
+}
+
+h4 {
+    @apply text-2xl;
+    @apply font-bold;
+    @apply text-text;
+}
+
+h5 {
+    @apply text-xl;
+    @apply font-bold;
+    @apply text-text;
+}
+
+h6 {
+    @apply text-lg;
+    @apply font-bold;
+    @apply text-text;
+}
+
+body {
+    @apply bg-surface0;
+    @apply text-text;
+    @apply font-sans;
+}
+
+a {
+    @apply text-mauve;
+    @apply hover:text-mauve;
+    @apply font-bold;
+    @apply underline;
+}
+.form-floating > .form-control {
+    /* broken */
+    @apply text-text;
+    @apply border-2;
+    @apply border-surface1;
+    @apply focus:outline-none;
+    @apply focus:border-mauve;
+}
+
+.bg-white {
+    @apply bg-surface0 !important;
+    @apply text-text;
+    @apply font-sans;
+    @apply border-b-surface1 !important;
+}
+
+.footer {
+    @apply bg-surface0;
+    @apply text-text;
+    @apply font-sans;
+    @apply border-t-surface1 !important;
+}
+
+.navbar-brand {
+    @apply text-text !important;
+    @apply font-bold;
+    @apply text-3xl;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    @apply bg-mauve;
+    @apply text-text;
+    @apply font-bold;
+}
+
+.nav-link {
+    @apply text-text;
+    @apply font-bold;
+    @apply hover:text-mauve;
+}

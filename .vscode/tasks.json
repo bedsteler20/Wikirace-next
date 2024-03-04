@@ -5,13 +5,18 @@
             "label": "Build Project",
             "type": "shell",
             "group": "build",
-            "command": "just build",
+            "command": "make build",
             "problemMatcher": ["$msCompile", "$tsc"],
         },
         {
             "label": "Create Migration",
             "type": "shell",
-            "command": "just migrate ${input:migration-name}",
+            "options": {
+                "env": {
+                    "NAME": "${input:migration-name}"
+                }
+            },
+            "command": "make migrate",
             "problemMatcher": ["$msCompile"],
             "presentation": {
                 "echo": true,
@@ -23,7 +28,7 @@
         {
             "label": "Update Database",
             "type": "shell",
-            "command": "just update-db",
+            "command": "make update-database",
             "problemMatcher": ["$msCompile"],
             "presentation": {
                 "echo": true,
@@ -35,7 +40,7 @@
         {
             "label": "Restore Project",
             "type": "shell",
-            "command": "just restore",
+            "command": "make restore",
             "problemMatcher": ["$msCompile"],
             "presentation": {
                 "echo": true,

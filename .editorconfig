@@ -30,3 +30,7 @@ csharp_new_line_between_query_expression_clauses = true
 
 # CA1848: Use the LoggerMessage delegates
 dotnet_diagnostic.CA1848.severity = none
+
+[Makefile] 
+indent_style = tab 
+indent_size = 4
