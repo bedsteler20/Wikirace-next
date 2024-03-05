@@ -107,3 +107,17 @@ a {
     @apply font-bold;
     @apply hover:text-mauve;
 }
+
+.form-floating > .form-control {
+    @apply bg-surface1;
+}
+
+.btn-danger {
+    @apply bg-red;
+    @apply text-white;
+    @apply font-bold;
+    @apply hover:bg-red;
+    @apply hover-pop;
+    @apply border-red;
+    @apply hover:border-red;
+}

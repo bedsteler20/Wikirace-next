@@ -17,23 +17,31 @@
                 <input placeholder="Start Page" autocomplete="off" id="start-page" asp-for="StartPage"
                     class="input w-full" />
                 <wikirace-complete for="start-page"></wikirace-complete>
+                <span asp-validation-for="StartPage" class="text-red"></span>
             </div>
             <div class="w-72">
                 <input placeholder="End Page" autocomplete="off" id="end-page" asp-for="EndPage" class="input w-full" />
                 <wikirace-complete for="end-page"></wikirace-complete>
+                <span asp-validation-for="EndPage" class="text-red"></span>
             </div>
 
             <div class="w-72">
                 <input asp-for="MaxPlayers" class="input w-full" value="20" />
+                <span asp-validation-for="MaxPlayers" class="text-red"></span>
             </div>
 
             <div class="w-72">
                 <select asp-for="GameType" asp-items="Html.GetEnumSelectList<GameType>()" class="input w-full"></select>
+                <span asp-validation-for="GameType" class="text-red"></span>
+
             </div>
 
             <div class="w-72">
                 <input asp-for="DisplayName" placeholder="Display Name" class="input w-full" />
+                <span asp-validation-for="DisplayName" class="text-red"></span>
             </div>
+
+
 
             <button type="submit" class="btn-mauve mt-3 pl-5 pr-5">Create</button>
         </form>

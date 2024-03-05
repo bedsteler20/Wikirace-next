@@ -3,7 +3,7 @@ module.exports = {
     content: [
         "./src/Pages/**/*.cshtml",
         "./src/Views/**/*.cshtml",
-        "./src/Javascript/**/*.js",
+        "./src/Javascript/**/*.ts",
     ],
     theme: {
         extend: {},

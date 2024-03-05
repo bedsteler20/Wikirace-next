@@ -16,9 +16,7 @@ class WikipediaCompletionBox extends HTMLElement {
                 visibility: ${this._visible ? "visible" : "hidden"};
                 position: absolute;
                 margin-top: 8px;
-                background-color: white;
                 width: 500px;
-                border: 1px solid black;
                 z-index: 100;
             }
 

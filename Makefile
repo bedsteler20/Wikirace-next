@@ -12,7 +12,7 @@ watch-tailwind:
 	tailwindcss -i ./src/Styles/index.css -o ./src/wwwroot/css/index.css --watch
 
 watch-tailstrap:
-	tailstrap -i ./src/Styles/tailstrap.css -o ./src/wwwroot/css/tailstrap.css --watch
+	tailwindcss -i ./src/Styles/tailstrap.css -o ./src/wwwroot/css/tailstrap.css --watch
 
 watch-dotnet:
 	dotnet watch --project ./src/Wikirace.csproj
@@ -27,7 +27,7 @@ build-tailwind:
 	tailwindcss -i ./src/Styles/index.css -o ./src/wwwroot/css/index.css
 
 build-tailstrap:
-	tailstrap -i ./src/Styles/tailstrap.css -o ./src/wwwroot/css/tailstrap.css
+	tailwindcss -i ./src/Styles/tailstrap.css -o ./src/wwwroot/css/tailstrap.css
 
 build-dotnet:
 	dotnet build ./src/Wikirace.csproj

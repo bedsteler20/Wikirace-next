@@ -7,3 +7,4 @@
 src/wwwroot/js/dist
 src/wwwroot/css/index.css
 node_modules
+src/wwwroot/css/tailstrap.css
