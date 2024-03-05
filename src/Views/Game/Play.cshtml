@@ -5,30 +5,30 @@
     Layout = "~/Views/Shared/_GameLayout.cshtml";
 }
 
-<nav class="navbar navbar-light bg-light">
-    <div class="">
-        <ul class="navbar-nav">
-        </ul>
-    </div>
-    <div class=" justify-content-end">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                @if (Model.IsOwner)
-                {
-                    <button class="nav-link btn btn-danger ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click"
-                        hx-post hx-confirm="Are you sure you want to end the game" hx-action="End" hx-controller="Game"
-                        hx-route-gameId="@Model.Game.Id">End</button>
-                }
-                else
-                {
-                    <button class="nav-link btn btn-danger ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click"
-                        hx-post hx-action="Leave" hx-confirm="Are you sure you want to Leave the game" hx-controller="Game"
-                        hx-route-gameId="@Model.Game.Id">Leave</button>
-                }
-            </li>
-        </ul>
-    </div>
-</nav>
+@* <nav class="navbar navbar-light bg-light">
+<div class="">
+<ul class="navbar-nav">
+</ul>
+</div>
+<div class=" justify-content-end">
+<ul class="navbar-nav">
+<li class="nav-item">
+@if (Model.IsOwner)
+{
+<button class="nav-link btn btn-danger ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click"
+hx-post hx-confirm="Are you sure you want to end the game" hx-action="End" hx-controller="Game"
+hx-route-gameId="@Model.Game.Id">End</button>
+}
+else
+{
+<button class="nav-link btn btn-danger ps-4 pe-4 text-white me-2 ms-2 rounded-4" hx-trigger="click"
+hx-post hx-action="Leave" hx-confirm="Are you sure you want to Leave the game" hx-controller="Game"
+hx-route-gameId="@Model.Game.Id">Leave</button>
+}
+</li>
+</ul>
+</div>
+</nav> *@
 
 
 <div class="hidden" hx-sse="connect:/game/@Model.Game.Id/state">
@@ -41,7 +41,4 @@
 
 </div>
 
-<div class="d-flex align-items-center w-100 flex-grow-1 justify-content-center ">
-    <iframe src="/game/@Model.Game.Id/pageframe"></iframe>
-
-</div>
+<iframe class="page-frame  overflow-scroll bg-white rounded-lg" src="/game/@Model.Game.Id/pageframe"></iframe>

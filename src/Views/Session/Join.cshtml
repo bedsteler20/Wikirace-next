@@ -11,8 +11,9 @@
             <h1 class="display-4 pb-8 text-4xl">Join Game</h1>
             @if (!Model.HideJoinCode)
             {
-                <div class="mb-3">
+                <div class="mb-3 flex flex-col">
                     <input placeholder="Game Code" autocomplete="off" class="input" asp-for="JoinCode" />
+                    <span asp-validation-for="JoinCode" class="text-red"></span>
                 </div>
             }
             else
@@ -20,9 +21,10 @@
                 <input autocomplete="off" asp-for="JoinCode" type="hidden" />
             }
 
-            <div class="mb-3">
+            <div class="mb-3 flex flex-col">
                 <input placeholder="Display Name" autocomplete="off" class="input" asp-for="DisplayName"
                     class="input" />
+                <span asp-validation-for="DisplayName" class="text-red"></span>
             </div>
 
             <button type="submit" class="btn-blue pr-8 pl-8">Join</button>

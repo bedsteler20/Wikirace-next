@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     valMsgReplaces.forEach((valMsgReplace) => {
         updateInputBoxWithValidationStyles(valMsgReplace as HTMLSpanElement);
     });
-}
+});
 
 // Start observing the entire document for changes
 observer.observe(document, { childList: true, subtree: true });
