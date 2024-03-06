@@ -23,4 +23,16 @@ public partial class AppDbContext : IdentityDbContext<AppUser> {
         modelBuilder.Entity<AppUser>().HasMany(u => u.Players).WithOne(p => p.User).HasForeignKey(p => p.UserId);
         modelBuilder.Entity<Player>().HasOne(p => p.User).WithMany(u => u.Players).HasForeignKey(p => p.UserId);
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+        var dbType = Environment.GetEnvironmentVariable("DB_TYPE") ?? "sqlite";
+        if (dbType == "sqlite") {
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ?? "Data Source=wikirace.db";
+            optionsBuilder.UseSqlite(connectionString);
+        } else if (dbType == "postgres") {
+            throw new Exception("Postgres not implemented");
+        } else {
+            throw new Exception("Unknown DB_TYPE" + dbType);
+        }
+    }
 }

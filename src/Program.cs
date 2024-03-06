@@ -17,15 +17,21 @@ builder.Services.AddMvcCore(options => {
 });
 
 // Database stuff
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=wikirace.db"));
+
+builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDatabaseRepository();
 
-// builder.Services.AddDbCleanupService();
-// builder.Services.AddDbCleanupService(builder.Configuration);
+builder.Services.Configure<DbCleanupOptions>(builder.Configuration);
+builder.Services.AddDbCleanupService();
+
+
 // Email
-// builder.Services.AddTransient<IEmailSender, EmailSenderService>();
-// builder.Services.Configure<EmailSenderOptions>(builder.Configuration);
+builder.Services.AddTransient<IEmailSender, EmailSenderService>();
+builder.Services.Configure<EmailSenderOptions>(options => {
+    options.SendGridKey = builder.Configuration["SendGridKey"] ?? Environment.GetEnvironmentVariable("SEND_GRID_KEY");
+
+});
 
 // Accounts
 var identity = builder.Services.AddDefaultIdentity<AppUser>(options => {
@@ -61,6 +67,11 @@ builder.Services.AddSingleton<ClientEventsService>();
 builder.Services.AddWikipediaRepo();
 
 var app = builder.Build();
+
+using (var serviceScope = app.Services.CreateScope()) {
+    var dbContext = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.EnsureCreated();
+}
 
 if (!app.Environment.IsDevelopment()) {
     app.UseExceptionHandler("/Home/Error");

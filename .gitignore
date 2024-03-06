@@ -9,3 +9,4 @@ src/wwwroot/css/index.css
 node_modules
 src/wwwroot/css/tailstrap.css
 src/wwwroot/lib/
+.env

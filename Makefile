@@ -43,3 +43,10 @@ restore:
 	dotnet restore ./src/Wikirace.csproj
 	dotnet tool restore
 	npm install
+
+publish:
+	make restore
+	make build-ts
+	make build-tailwind
+	make build-tailstrap
+	dotnet publish ./src/Wikirace.csproj -c Release

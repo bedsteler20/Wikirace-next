@@ -12,9 +12,9 @@ const ctx = await esbuild.context({
     minify: isDev ? false : true,
     sourcemap: isDev ? "inline" : false,
     plugins: [
-        minifyHTMLLiteralsPlugin({
-            shouldMinify: isDev ? false : true,
-        }),
+        // minifyHTMLLiteralsPlugin({
+        //     shouldMinify: isDev ? false : true,
+        // }),
     ],
 });
 

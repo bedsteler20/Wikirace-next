@@ -1,0 +1,16 @@
+volumes:
+    data:
+        driver: local
+
+services:
+  server:
+    build:
+      context: .
+      target: final
+    ports:
+      - 8080:8080
+    environment:
+        - DB_CONNECTION_STRING=Data Source=/data/wikirace.db
+    volumes:
+        - data:/data
+    env_file: .env

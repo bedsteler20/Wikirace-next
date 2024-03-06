@@ -11,50 +11,43 @@ public class DbCleanupOptions {
 }
 
 public class DbCleanupService {
+
     public DbCleanupService(ILogger<DbCleanupService> logger, AppDbContext dbContext, DbCleanupOptions options) {
 
         logger.LogInformation("DbCleanupService started");
+
         var timer = new Timer(async _ => {
-            logger.LogInformation("Running cleanup");
-            var now = DateTimeOffset.UtcNow;
-            var cutoff = now - options.AnonymousAccountLifetime;
-            var cutoffGames = now - options.GameLifetime;
 
+            var oldAccounts = dbContext.Users
+                                       .Where(u => u.IsAnonymous)
+                                       .ToList()
+                                       .Where(u => u.CreatedAt < DateTime.Now - options.AnonymousAccountLifetime);
 
-            foreach (var game in dbContext.Games.AsEnumerable()) {
-                if (game.UpdatedAt < cutoffGames) {
-                    logger.LogInformation($"Deleting game {game.Id}");
-                    foreach (var player in game.Players) {
-                        logger.LogInformation($"Deleting player {player.Id}");
-                        dbContext.Players.Remove(player);
-                    }
-                    dbContext.Games.Remove(game);
-                }
-            }
+            logger.LogInformation("Removing {} old accounts", oldAccounts.Count());
 
-            foreach (var user in dbContext.Users.AsEnumerable()) {
-                if (user.IsAnonymous && user.CreatedAt < cutoff) {
-                    logger.LogInformation($"Deleting user {user.Id}");
-                    dbContext.Users.Remove(user);
-                }
-            }
+            dbContext.RemoveRange(oldAccounts);
 
+            var oldGames = dbContext.Games
+                                    .ToList()
+                                    .Where(g => g.CreatedAt < DateTime.Now - options.GameLifetime);
+
+            logger.LogInformation("Removing {} old games", oldGames.Count());
+            dbContext.RemoveRange(oldGames);
 
             await dbContext.SaveChangesAsync();
 
         }, null, TimeSpan.Zero, options.CheckInterval);
     }
-
 }
+
 
 public static class DbCleanupServiceExtensions {
     public static IServiceCollection AddDbCleanupService(this IServiceCollection services) {
-
+        var options = services.BuildServiceProvider().GetService<IOptions<DbCleanupOptions>>();
         var dbContext = services.BuildServiceProvider().GetService<AppDbContext>();
         var logger = services.BuildServiceProvider().GetService<ILogger<DbCleanupService>>();
-        var options = new DbCleanupOptions();
-        var service = new DbCleanupService(logger!, dbContext!, options);
-        services.AddSingleton<DbCleanupService>(service);
+        var service = new DbCleanupService(logger!, dbContext!, options?.Value ?? new DbCleanupOptions());
+        services.AddSingleton(service);
         return services;
     }
 }
