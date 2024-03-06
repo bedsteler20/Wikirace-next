@@ -13,6 +13,6 @@
         opacity: 0.8;
     }
     .lobby-container {
-        @apply flex flex-col items-center justify-center;
+        @apply flex flex-row gap-1 items-center justify-center;
     }
 }

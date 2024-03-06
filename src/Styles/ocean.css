@@ -11,6 +11,7 @@
     left: 0;
     background: #b4befe;
     z-index: -100;
+    overflow: hidden;
 }
 
 /* TODO: Download this */
