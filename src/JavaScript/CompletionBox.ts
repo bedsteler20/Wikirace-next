@@ -1,4 +1,6 @@
-class WikipediaCompletionBox extends HTMLElement {
+import { css, html } from "./Utils";
+
+export class WikipediaCompletionBox extends HTMLElement {
     private _visible: boolean;
     private _items: CompletionItem[] = [];
 
@@ -11,7 +13,7 @@ class WikipediaCompletionBox extends HTMLElement {
     }
 
     public renderStyles(): string {
-        return `
+        return css`
             .root {
                 visibility: ${this._visible ? "visible" : "hidden"};
                 position: absolute;
@@ -45,11 +47,11 @@ class WikipediaCompletionBox extends HTMLElement {
 
 
     render() {
-        this.shadowRoot!.innerHTML = `
+        this.shadowRoot!.innerHTML = html`
             <style>${this.renderStyles()}</style>
             <link rel="stylesheet" href="/css/index.css">
             <div class="root w-72 bg-surface1 rounded-2xl text-left">
-                ${this._items.map((item) => `
+                ${this._items.map((item) => html`
                     <div class="item">
                         <img class="image rounded" src="${item.imageUrl ?? "/nopage.svg"}" />
                         <div>

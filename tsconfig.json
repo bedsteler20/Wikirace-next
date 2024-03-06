@@ -2,7 +2,7 @@
     "compileOnSave": true,
     "compilerOptions": {
         "target": "ES6",
-        "module": "None",
+        "module": "ES6",
         "lib": ["DOM", "ES2020"],
         "outDir": "./src/wwwroot/js/dist",
         "sourceMap": true

@@ -25,12 +25,13 @@
         {
             "library": "htmx.org@1.9.10",
             "destination": "src/wwwroot/lib/htmx",
-            "files": ["dist/ext/sse.js", "dist/htmx.js"]
+            "files": ["dist/*"]
         },
         {
+            "provider": "jsdelivr",
             "library": "canvas-confetti@1.9.2",
             "destination": "src/wwwroot/lib/canvas-confetti",
-            "files": ["dist/confetti.browser.min.js"]
+            "files": ["dist/confetti.browser.js"]
         }
     ]
 }

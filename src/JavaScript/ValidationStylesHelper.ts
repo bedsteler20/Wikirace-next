@@ -1,5 +1,4 @@
-
-function updateInputBoxWithValidationStyles(span: HTMLSpanElement): void {
+function updateElement(span: HTMLSpanElement): void {
     if (span.innerText === '') return;
     console.log(span.innerText);
     const forElementId = span.getAttribute('data-valmsg-for');
@@ -18,7 +17,7 @@ const observer = new MutationObserver((mutationsList) => {
             for (const node of addedNodes) {
                 if (node instanceof HTMLElement) {
                     if (node.getAttribute('data-valmsg-replace')) {
-                        updateInputBoxWithValidationStyles(node);
+                        updateElement(node);
                     }
                 }
             }
@@ -29,7 +28,7 @@ const observer = new MutationObserver((mutationsList) => {
 document.addEventListener('DOMContentLoaded', () => {
     const valMsgReplaces = document.querySelectorAll('[data-valmsg-replace]');
     valMsgReplaces.forEach((valMsgReplace) => {
-        updateInputBoxWithValidationStyles(valMsgReplace as HTMLSpanElement);
+        updateElement(valMsgReplace as HTMLSpanElement);
     });
 });
 
