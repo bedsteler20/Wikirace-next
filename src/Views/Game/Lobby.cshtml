@@ -4,6 +4,8 @@
     ViewBag.CustomRightHeader = true;
     Layout = "~/Views/Shared/_GameLayout.cshtml";
 
+    var quickJoinUrl = Url.ActionLink("Join", "Session", new { gameId = Model.Game.JoinCode })!;
+    var qrUrl = $"https://chart.googleapis.com/chart?cht=qr&chl={Uri.EscapeDataString(quickJoinUrl)}&chs=200x200&chld=L|0";
 }
 
 @section CustomRightHeader
@@ -35,14 +37,14 @@
                 <h5 class="text-xl">Game Code:</h5>
                 <h1 class="text-4xl">@Model.Game.JoinCode.ToUpper()</h1>
             </div>
-            <img class="lobby-qr-code w-4/12 m-2 p-1 bg-white rounded-lg" src="~/qr-placeholder.png" alt="Join QR Code">
+            <img class="lobby-qr-code w-4/12 m-2 p-1 bg-white rounded-lg" src="@qrUrl" alt="Join QR Code">
         </div>
     </div>
 
 
     <div hx-sse="connect:/game/@Model.Game.Id/state">
-        <div class="lobby-container" hx-trigger="sse:@EventNames.RefreshLobby" hx-get
-            hx-action="Lobby" hx-controller="Game" hx-route-gameId="@Model.Game.Id" hx-swap="innerHTML">
+        <div class="lobby-container" hx-trigger="sse:@EventNames.RefreshLobby" hx-get hx-action="Lobby" hx-controller="Game"
+            hx-route-gameId="@Model.Game.Id" hx-swap="innerHTML">
             <partial name="_PlayerList" model="@Model" />
         </div>
 
