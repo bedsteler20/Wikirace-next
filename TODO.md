@@ -11,14 +11,16 @@
 
 
 ## Bugs
-- [ ] Fix SQLite in docker
+- [x] Fix SQLite in docker
 - [x] Fix user not linking to player
 - [x] Fix win game not redirecting to win page
 - [x] Fix bug where page frame links don't work
 - [x] Stop players from going to special pages
 - [x] Fix di issue with clean up service
-- [ ] Fix join qr code not working
+- [x] Fix join qr code not working
 - [x] fix avatar on win 
+- [ ] Fix sse htmx extension not loading
+- [x] fix blank page frame
 
 ## Code Quality
 - [ ] Move all extensions to their own namespace
