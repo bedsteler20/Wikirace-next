@@ -42,7 +42,7 @@ export class PageFrame extends HTMLElement {
         `;
 
     public static Template = html`
-            <link rel="stylesheet" href="/css/wikipedia.css">
+            <link rel="stylesheet" href="/lib/wikirace/wikipedia.css">
             <style>
                 ${PageFrame.Styles}
             </style>

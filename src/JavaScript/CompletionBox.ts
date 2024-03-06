@@ -49,7 +49,7 @@ export class WikipediaCompletionBox extends HTMLElement {
     render() {
         this.shadowRoot!.innerHTML = html`
             <style>${this.renderStyles()}</style>
-            <link rel="stylesheet" href="/css/index.css">
+            <link rel="stylesheet" href="/lib/wikirace/index.css">
             <div class="root w-72 bg-surface1 rounded-2xl text-left">
                 ${this._items.map((item) => html`
                     <div class="item">
