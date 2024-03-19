@@ -1,36 +1,28 @@
 .ocean-bg {
     background: #f5c2e7;
-    overflow: hidden;
 }
 
 .ocean {
     height: 30%;
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
     background: #b4befe;
     z-index: -100;
+    position: absolute;
+    bottom: 0;
+    border-width: 0;
+    border: none;
 }
 
 /* TODO: Download this */
 .wave {
+    border-width: 0;
+    border: none;
     background: url(/wave.svg) repeat-x;
-    position: absolute;
-    top: -198px;
-    width: 6400px;
+    top: -197px;
+    position: relative;
     height: 198px;
     animation: wave 20s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
     transform: translate3d(0, 0, 0);
-    z-index: -10;
-}
-
-.wave:nth-of-type(2) {
-    top: -175px;
-    animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite,
-        swell 7s ease -1.25s infinite;
-    opacity: 1;
-    z-index: -10;
 }
 
 @keyframes wave {
