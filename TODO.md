@@ -19,7 +19,7 @@
 - [x] Fix di issue with clean up service
 - [x] Fix join qr code not working
 - [x] fix avatar on win 
-- [ ] Fix sse htmx extension not loading
+- [x] Fix sse htmx extension not loading
 - [x] fix blank page frame
 
 ## Code Quality

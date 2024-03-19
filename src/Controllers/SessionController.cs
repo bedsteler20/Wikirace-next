@@ -59,7 +59,7 @@ public class SessionController : Controller {
             return View(model);
         }
 
-        await _repository.JoinGame(game.Id, model.DisplayName, User!.GetUserId()!);
+        await _repository.JoinGame(game.Id.ToLower(), model.DisplayName, User!.GetUserId()!);
         await _clientEventsService.SendEvent(EventNames.RefreshLobby, game.Id, null);
 
         return RedirectToAction("Lobby", "Game", new { gameId = game.Id });
