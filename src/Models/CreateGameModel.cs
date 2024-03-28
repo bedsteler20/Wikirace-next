@@ -25,5 +25,4 @@ public class CreateGameModel {
     [Required]
     [Display(Name = "Your Display Name")]
     public string DisplayName { get; set; }
-
 }

@@ -43,7 +43,9 @@ public class SessionController : Controller {
             return View(model);
         }
 
-        var game = await _repository.GetGameByJoinCode(model.JoinCode);
+        var code = model.JoinCode?.ToLower();
+
+        var game = await _repository.GetGameByJoinCode(code!);
         if (game == null) {
             ModelState.AddModelError("JoinCode", "Game not found");
             return View(model);

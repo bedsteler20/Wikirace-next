@@ -1,9 +1,12 @@
 {
     "devDependencies": {
         "@catppuccin/tailwindcss": "^0.1.6",
+        "@types/puppeteer": "^7.0.4",
         "esbuild": "^0.19.5",
         "esbuild-plugin-minify-html-literals": "^1.0.6",
         "postcss-import": "^16.0.1",
-        "tailwindcss": "^3.4.1"
+        "puppeteer": "^22.6.1",
+        "tailwindcss": "^3.4.1",
+        "ts-node": "^10.9.2"
     }
 }

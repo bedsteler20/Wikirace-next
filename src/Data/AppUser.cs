@@ -16,7 +16,7 @@ public class AppUser : IdentityUser {
     public string DisplayName => IsAnonymous ? "Anonymous" : UserName;
 
     [NotMapped]
-    public string AvatarUrl => GravatarSharp.GravatarController.GetImageUrl(Email, 100);
+    public string AvatarUrl => GravatarSharp.GravatarController.GetImageUrl(Email ?? "example@example.com", 100);
 }
 
 

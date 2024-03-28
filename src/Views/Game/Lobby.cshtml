@@ -12,14 +12,14 @@
 {
     @if (Model.IsOwner)
     {
-        <button class="btn-blue hover-pop" hx-trigger="click" hx-post hx-action="Start" hx-controller="Game"
+        <button id="StartGame" class="btn-blue hover-pop" hx-trigger="click" hx-post hx-action="Start" hx-controller="Game"
     hx-route-gameId="@Model.Game.Id">Start</button>
         <button class="btn-red hover-pop" hx-trigger="click" hx-post hx-confirm="Are you sure you want to end the game"
     hx-action="End" hx-controller="Game" hx-route-gameId="@Model.Game.Id">End</button>
     }
     else
     {
-        <button class="btn-red hover-pop" hx-trigger="click" hx-post hx-action="Leave"
+        <button id="EndGame" class="btn-red hover-pop" hx-trigger="click" hx-post hx-action="Leave"
     hx-confirm="Are you sure you want to Leave the game" hx-controller="Game"
     hx-route-gameId="@Model.Game.Id">Leave</button>
     }
@@ -35,7 +35,7 @@
         <div class="flex p-3">
             <div class="flex-grow flex flex-col text-text">
                 <h5 class="text-xl">Game Code:</h5>
-                <h1 class="text-4xl">@Model.Game.JoinCode.ToUpper()</h1>
+                <h1 id="game-id" class="text-4xl">@Model.Game.JoinCode.ToUpper()</h1>
             </div>
             <img class="lobby-qr-code w-4/12 m-2 p-1 bg-white rounded-lg" src="@qrUrl" alt="Join QR Code">
         </div>
@@ -50,4 +50,5 @@
 
         @* State Redirects *@
         <div hx-trigger="sse:@EventNames.EndGame" hx-redirect hx-alert="The game has ended" hx-get="/"></div>
+        <div hx-trigger="sse:@EventNames.StartGame" hx-redirect hx-get="/game/@Model.Game.Id/play"></div>
     </div>

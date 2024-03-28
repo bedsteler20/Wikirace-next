@@ -21,16 +21,16 @@
                 <span asp-validation-for="EndPage" class="text-red"></span>
             </div>
 
-            <div class="w-72">
+            @* <div class="w-72">
                 <input asp-for="MaxPlayers" class="input w-full" value="20" />
                 <span asp-validation-for="MaxPlayers" class="text-red"></span>
-            </div>
+            </div> *@
 
-            <div class="w-72">
+            @* <div class="w-72">
                 <select asp-for="GameType" asp-items="Html.GetEnumSelectList<GameType>()" class="input w-full"></select>
                 <span asp-validation-for="GameType" class="text-red"></span>
 
-            </div>
+            </div> *@
 
             <div class="w-72">
                 <input asp-for="DisplayName" placeholder="Display Name" class="input w-full" />
