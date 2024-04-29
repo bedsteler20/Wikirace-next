@@ -10,6 +10,7 @@ public class JoinGameModel {
 
     [Required]
     [Display(Name = "Display Name")]
+    [MaxLength(20)]
     public string DisplayName { get; set; }
 
     public bool HideJoinCode { get; set; } = false;
